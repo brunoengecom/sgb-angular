@@ -1,0 +1,32 @@
+<app-navegacao></app-navegacao>
+<h1>Barra de Pesquisar</h1>
+<table class="table table-striped">
+    <thead>
+      <th scope="row">Nome:</th>
+      <th scope="row">Área de Conhecimento:</th>
+      <th scope="row">Editora:</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livro of livros">
+        <th scope="row">{{livro.nome}}</th>
+
+        <td scope="row">{{livro.areaDeConhecimento}}</td>     
+        <td scope="col">{{livro.editora.nome}}</td>
+
+        <td><a routerLink="/livro/{{livro.id}}" class="btn btn-info ">Ver Detalhes</a></td>
+
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>

@@ -1,0 +1,41 @@
+<app-navegacao></app-navegacao>
+<h1>{{livro.nome}}</h1>
+
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th scope="row">Edição:</th> 
+            <td>{{livro.edicao}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Ano:</th> 
+            <td>{{livro.ano}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Isbn:</th> 
+            <td>{{livro.isbn}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Area de Conhecimento:</th> 
+            <td>{{livro.areaDeConhecimento}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Editora:</th> 
+            <td>{{livro.editora.nome}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Autores:</th> 
+            <td>
+                <ul>
+                    <li *ngFor="let autor of livro.autores">{{autor}}</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><a routerLink="/patrimonio/add/{{livro.id}}" class="btn btn-primary">Cadastrar Patrimonio</a></td>
+            <td><a routerLink="/livro/edit/{{livro.id}}" class="btn btn-warning">Editar</a></td>
+        </tr>
+    </tbody>
+
+
+</table>

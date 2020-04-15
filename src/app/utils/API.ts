@@ -1,0 +1,1 @@
+export const RESOURCE:string = "http://localhost:8080";

@@ -1,0 +1,20 @@
+<app-navegacao></app-navegacao>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="row">Nome:</th> 
+            <th scope="row">Cnpj:</th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let editora of editoras">
+            <th scope="row">{{editora.nome}}</th>    
+            <td scope="row">{{editora.cnpj}}</td>     
+            <td><a routerLink="/editora/{{editora.id}}" class="btn btn-warning ">Editar</a></td>
+    
+          </tr>
+    </tbody>
+</table>
