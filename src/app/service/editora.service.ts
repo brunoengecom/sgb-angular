@@ -13,10 +13,10 @@ export class EditoraService {
 
   getEditoras(page: number) {
     let p = ''+page;
-    var getLivrosURL= this.url + "?linesPerPage=" + this.linesPerPage + "&page=" + p 
+    var getEditoraURL= this.url + "?linesPerPage=" + this.linesPerPage + "&page=" + p 
     + "&orderBy=" +this.orderBy + "&direction=" +this.direction;
-    console.log(getLivrosURL);
-   return this.http.get(getLivrosURL,
+    console.log(getEditoraURL);
+   return this.http.get(getEditoraURL,
    {responseType:"json"});
   }
 

@@ -13,6 +13,8 @@ import { LivroDetalhesComponent } from './pages/livro/livro-detalhes/livro-detal
 import { LivroEditComponent } from './pages/livro/livro-edit/livro-edit.component';
 import { EditoraComponent } from './pages/editora/editora.component';
 import { AreaDeConhecimentoComponent } from './pages/area-de-conhecimento/area-de-conhecimento.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { AreaDeConhecimentoComponent } from './pages/area-de-conhecimento/area-d
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
