@@ -1,21 +1,22 @@
 <app-navegacao></app-navegacao>
-
-
+    
 <table class="table table-striped">
     <thead>
-      <th scope="row">Nome:</th>
-      <th scope="row">Área de Conhecimento:</th>
-      <th scope="row">Editora:</th>
+      <th scope="row">Data de Inicio:</th>
+      <th scope="row">Data de Fim:</th>
+      <th scope="row">Periodo:</th>
+      <th scope="row">Curso:</th>
       <th></th>
     </thead>
     <tbody>
-      <tr *ngFor="let livro of livros">
-        <th scope="row">{{livro.nome}}</th>
+      <tr *ngFor="let turma of turmas">
+        <td scope="row">{{turma.dtInicio | date:'dd/MM/yyyy'}}</td>
+        <td scope="row">{{turma.dtFim | date:'dd/MM/yyyy'}}</td>     
+        <td scope="col">{{turma.periodo}}</td>
+        <td scope="row">{{turma.curso.nome}}</td>
 
-        <td scope="row">{{livro.areaDeConhecimento}}</td>     
-        <td scope="col">{{livro.editora.nome}}</td>
-
-        <td><a routerLink="/livro/{{livro.id}}" class="btn btn-info ">Ver Detalhes</a></td>
+        <td><a routerLink="/turma/{{turma.id}}" class="btn btn-info ">Ver Detalhes</a></td>
+        
 
       </tr>
       

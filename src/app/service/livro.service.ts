@@ -7,6 +7,9 @@ import { RESOURCE } from '../utils/API';
   providedIn: 'root'
 })
 export class LivroService {
+  getPatrimonio(arg0: number): any {
+    throw new Error("Method not implemented.");
+  }
   url:string = RESOURCE + "/livro";
   linesPerPage:string = "10";
   orderBy:string = "id";

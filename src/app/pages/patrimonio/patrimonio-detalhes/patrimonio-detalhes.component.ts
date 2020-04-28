@@ -1,17 +1,17 @@
+
+import { Patrimonio } from 'src/app/model/patrimonio';
 import { Component, OnInit } from '@angular/core';
-import { Livro } from 'src/app/model/livro';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { LivroService } from 'src/app/service/livro.service';
 import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-livro-detalhes',
-  templateUrl: './livro-detalhes.component.html',
-  styleUrls: ['./livro-detalhes.component.css']
+  selector: 'app-patrimonio-detalhes',
+  templateUrl: './patrimonio-detalhes.component.html',
+  styleUrls: ['./patrimonio-detalhes.component.css']
 })
-export class LivroDetalhesComponent implements OnInit {
-  livro:Livro=new Livro;
+export class PatrimonioDetalhesComponent implements OnInit {
+  patrimonio:Patrimonio=new Patrimonio;
   id:number;
   constructor(
     private route: ActivatedRoute,
@@ -22,10 +22,10 @@ export class LivroDetalhesComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.pipe(
       switchMap((params: ParamMap)=>
-      this.service.getLivro(+params.get("id")))
-      ).subscribe(livro=>{
-        console.log(livro);
-        this.livro = livro;
+      this.service.getPatrimonio(+params.get("id")))
+      ).subscribe(patrimonio=>{
+        console.log(patrimonio);
+        patrimonio = patrimonio;
       });
   }
 

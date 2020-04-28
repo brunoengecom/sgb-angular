@@ -3,19 +3,20 @@
 
 <table class="table table-striped">
     <thead>
-      <th scope="row">Nome:</th>
-      <th scope="row">Área de Conhecimento:</th>
+      <th scope="row">Numero:</th>
+      <th scope="row">Livro:</th>
       <th scope="row">Editora:</th>
       <th></th>
     </thead>
     <tbody>
-      <tr *ngFor="let livro of livros">
-        <th scope="row">{{livro.nome}}</th>
+      <tr *ngFor="let patrimonio of patrimonios">
+        <th scope="row">{{patrimonio.numero}}</th>
 
-        <td scope="row">{{livro.areaDeConhecimento}}</td>     
-        <td scope="col">{{livro.editora.nome}}</td>
+        <td scope="row">{{patrimonio.livro.nome}}</td>     
+        <td scope="col">{{patrimonio.livro.editora.nome}}</td>
 
-        <td><a routerLink="/livro/{{livro.id}}" class="btn btn-info ">Ver Detalhes</a></td>
+        <td><a routerLink="/patrimonio/{{patrimonio.id}}" class="btn btn-info ">Ver Detalhes</a></td>
+        
 
       </tr>
       

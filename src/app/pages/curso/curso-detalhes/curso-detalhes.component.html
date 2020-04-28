@@ -1,0 +1,21 @@
+<app-navegacao></app-navegacao>
+<h1>{{curso.nome}}</h1>
+
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th scope="row">Nome:</th> 
+            <td>{{curso.nome}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Tipo:</th> 
+            <td>{{curso.tipo}}</td>
+        </tr>
+        <tr>
+            <td><a routerLink="/curso/add/{{curso.id}}" class="btn btn-primary">Cadastrar Curso</a></td>
+            <td><a routerLink="/curso/edit/{{curso.id}}" class="btn btn-warning">Editar</a></td>
+        </tr>
+    </tbody>
+
+
+</table>

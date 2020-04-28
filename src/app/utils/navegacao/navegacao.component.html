@@ -19,11 +19,11 @@
           Livro
         </a>
         <div class="dropdown-menu" class="w3-dropdown-content w3-border"   aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Cadastrar</a>
+          <a class="dropdown-item" routerLink="/livro/livro-cadastrar">Cadastrar</a>
           <a class="dropdown-item" routerLink="/livro" >Pesquisar</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/editora">Editora</a>
-          <a class="dropdown-item" href="/area-de-conhecimento">Área de Conhecimento</a>
+          <a class="dropdown-item" routerLink="/editora">Editora</a>
+          <a class="dropdown-item" routerLink="/area-de-conhecimento">Área de Conhecimento</a>
         </div>
       </li>
     </div>
@@ -35,7 +35,7 @@
       </a>
       <div class="dropdown-menu" class="w3-dropdown-content w3-border"   aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="#">Cadastrar</a>
-        <a class="dropdown-item" href="#">Pesquisar</a>
+        <a class="dropdown-item" routerLink="/patrimonio">Pesquisar</a>
       </div>
     </li>
   </div>
@@ -53,27 +53,17 @@
       </div>
     </li>
   </div>
-<!----------------------------- Aluno ---------------------------------------------->
-    <div class="w3-dropdown-hover style= background-color: 		rgb(211, 205, 211);">        
-      <li class="nav-item w3-dropdown-hover">
-      <a class="nav-link dropdown-toggle" style= background-color:#C0C0C0 href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Aluno
-      </a>
-      <div class="dropdown-menu" class="w3-dropdown-content w3-border"   aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#">Cadastrar</a>
-        <a class="dropdown-item" href="#">Pesquisar</a>
-      </div>
-    </li>
-  </div>
 <!----------------------------- Funcionario ---------------------------------------------->
     <div class="w3-dropdown-hover style= background-color: 		rgb(211, 205, 211);">        
       <li class="nav-item w3-dropdown-hover">
       <a class="nav-link dropdown-toggle" style= background-color:#C0C0C0 href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Funcionário
+        Usuário
       </a>
       <div class="dropdown-menu" class="w3-dropdown-content w3-border"   aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#">Cadastrar</a>
-        <a class="dropdown-item" href="#">Pesquisar</a>
+        <a class="dropdown-item" href="#">Cadastrar Aluno</a>
+        <a class="dropdown-item" href="#">Cadastrar Funcionário</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" routerLink="/usuario">Pesquisar</a>
       </div>
     </li>
   </div>
@@ -87,7 +77,7 @@
       </a>
       <div class="dropdown-menu" class="w3-dropdown-content w3-border"   aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="#">Cadastrar</a>
-        <a class="dropdown-item" href="#">Pesquisar</a>
+        <a class="dropdown-item" routerLink="/turma">Pesquisar</a>
       </div>
     </li>
   </div>
@@ -103,10 +93,20 @@
         <div class="dropdown-menu" class="w3-dropdown-content w3-border"  
          aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Cadastrar</a>
-          <a class="dropdown-item" href="#">Pesquisar</a>
+          <a class="dropdown-item" routerLink="/curso">Pesquisar</a>
         </div>
       </li>
   </div>
+
+  
+  <div class="w3-dropdown-hover  style= background-color: 		rgb(211, 205, 211);">        
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/logout" >Sair</a>
+    </li>
+</div>
+  
+  
   </ul>
+  
 </div>
 </nav>

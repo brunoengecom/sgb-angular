@@ -10,6 +10,7 @@ import { RESOURCE } from '../utils/API';
 })
 
 export class LoginService {
+  
   url:string = RESOURCE + "/login";
   login(login: Login):Observable<HttpResponse<any>> {
     let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
@@ -21,5 +22,9 @@ export class LoginService {
     });
   }
 
+  logout() {
+    localStorage.clear();
+  }
   constructor(private http:HttpClient  ) { }
+
 }

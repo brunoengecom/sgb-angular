@@ -1,0 +1,55 @@
+<app-navegacao></app-navegacao>
+<h1>{{usuario.nome}}</h1>
+
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th scope="row">Email:</th> 
+            <td>{{usuario.email}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Data de Nascimento:</th> 
+            <td>{{usuario.dataNasc | date:'dd/MM/yyyy'}}</td>
+        </tr>
+       
+        <tr>
+            <th scope="row">CPF:</th> 
+            <td>{{usuario.cpf}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Status:</th> 
+            <td>{{usuario.status}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Cargo:</th> 
+            <td>{{usuario.cargo}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Matricula:</th> 
+            <td>{{usuario.matricula}}</td>
+        </tr>
+
+        <tr>
+            <th scope="row">Cadastrado Como:</th> 
+            <td>
+                <ul>
+                    <li *ngFor="let role of usuario.roles">{{role}}</li>
+                </ul>
+            </td>
+        </tr>
+        
+        <tr>
+             <td><a routerLink="/usuario/edit/{{usuario.id}}" class="btn btn-warning">Editar</a></td>
+             <!--<td scope="row" *ngIf="!usuario.roles.indexOf('ALUNO')>-1">
+                <a routerLink="/aluno/{{usuario.id}}" class="btn btn-info">Inserir Cadastro como Aluno</a></td>
+
+            <td scope="row" *ngIf="!usuario.roles.indexOf('FUNCIONARIO')>-1">
+                <a routerLink="/funcionario/{{usuario.id}}" class="btn btn-info">Inserir Cadastro como Funcionario</a></td>   
+           
+            -->
+
+        </tr>
+    </tbody>
+
+
+</table>

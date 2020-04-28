@@ -1,13 +1,18 @@
 <div class="wrapper fadeInDown">
+    
   <div [formGroup]="profileForm" id="formContent">
     <div class="fadeIn first">
       <img src="assets/img/d.png" id="icon" alt="User Icon" />
     </div>
 
+    <ng-template [ngIf]="alert"><div  class="alert alert-danger" role="alert">
+        Usuario e/ou Senha incorretos!
+      </div></ng-template>
+
       <input type="text" id="login" class="fadeIn second" formControlName="email" placeholder="Email">
-      <input type="text" id="password" class="fadeIn third" formControlName="senha" placeholder="Senha">
+      <input type="password" id="password" class="fadeIn third" formControlName="senha" placeholder="Senha">
       
-      <button (click)="onSubmit()" type="button" class=" fadeIn fourth">Salvar</button>
+      <button (click)="onSubmit()" type="button" class=" fadeIn fourth">Entrar</button>
     
 
     <div id="formFooter">

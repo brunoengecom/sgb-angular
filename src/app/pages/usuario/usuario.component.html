@@ -1,21 +1,19 @@
 <app-navegacao></app-navegacao>
 
-
 <table class="table table-striped">
     <thead>
       <th scope="row">Nome:</th>
-      <th scope="row">Área de Conhecimento:</th>
-      <th scope="row">Editora:</th>
+      <th scope="row">Email:</th>
+      <th scope="row">CPF:</th>
       <th></th>
     </thead>
     <tbody>
-      <tr *ngFor="let livro of livros">
-        <th scope="row">{{livro.nome}}</th>
+      <tr *ngFor="let usuario of usuarios">
+        <th scope="row">{{usuario.nome}}</th>
+        <td scope="row">{{usuario.email}}</td>     
+        <td scope="col">{{usuario.cpf}}</td>
 
-        <td scope="row">{{livro.areaDeConhecimento}}</td>     
-        <td scope="col">{{livro.editora.nome}}</td>
-
-        <td><a routerLink="/livro/{{livro.id}}" class="btn btn-info ">Ver Detalhes</a></td>
+        <td><a routerLink="/usuario/{{usuario.id}}" class="btn btn-info ">Ver Detalhes</a></td>
 
       </tr>
       

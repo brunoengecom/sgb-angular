@@ -1,6 +1,6 @@
 import { Editora } from './editora';
 
-export interface Livro{
+export class Livro{
     id : number;
     nome : string;
     edicao : number;
