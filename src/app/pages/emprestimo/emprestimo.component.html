@@ -1,0 +1,41 @@
+<app-navegacao></app-navegacao>
+
+
+<table class="table table-striped">
+    <div class="container" [formGroup]="profileForm">
+    <h1>Emprestimos</h1>
+    <hr>
+     
+    
+    <label for="fname">aquisicao:</label>
+    <input id="campoData" type="text" id="fname" name="aquisicao" 
+    placeholder="dd/mm/aaaa" data-mask="00/00/0000" maxlength="10" autocomplete="off"
+    class="form-control data-mask" formControlName="dtInicio" required >
+
+    <label for="fname">Solicitante:</label>    
+    <select placeholder="Periodo" id="campoData" type="text" id="fname" name="solicitante" 
+    class="form-control" >  
+   
+        <option  value="solicitante"></option>
+        <option id="2" value="aluno">Aluno</option>
+        <option id="3" value="funcionario">Funcionario</option>
+        
+      </select>
+
+    <label for="fname">Devolução:</label>    
+    <input id="campoData" type="text" id="fname" name="dtFim" placeholder="dd/mm/aaaa" 
+    data-mask="00/00/0000" maxlength="10" autocomplete="off"
+    class="form-control data-mask" formControlName="dtFim" required >
+
+    
+
+    <label for="fname">Curso:</label>    
+    <input id="campoData" type="text" id="fname" name="curso" placeholder="Curso"
+    class="form-control data-mask" formControlName="dtFim" required>
+    
+
+    <button [disabled]="!profileForm.valid" (click)="onSubmit()" href="#" class="btn btn-success mb-4" value="Cadastrar">Salvar</button>
+    <button routerLink="/editora" class="btn btn-danger mx-sm-3 mb-4" value="Cadastrar">Voltar</button>
+    
+</div>
+</table>

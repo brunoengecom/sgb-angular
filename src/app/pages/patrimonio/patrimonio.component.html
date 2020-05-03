@@ -1,9 +1,11 @@
 <app-navegacao></app-navegacao>
 
+<p>Total de Resultados: {{totalElements}}</p>
+<p>lines</p>{{linesPerPage}}
 
 <table class="table table-striped">
     <thead>
-      <th scope="row">Numero:</th>
+      <th scope="row">Nº de Patrimonio:</th>
       <th scope="row">Livro:</th>
       <th scope="row">Editora:</th>
       <th></th>
@@ -11,9 +13,9 @@
     <tbody>
       <tr *ngFor="let patrimonio of patrimonios">
         <th scope="row">{{patrimonio.numero}}</th>
-
         <td scope="row">{{patrimonio.livro.nome}}</td>     
         <td scope="col">{{patrimonio.livro.editora.nome}}</td>
+        
 
         <td><a routerLink="/patrimonio/{{patrimonio.id}}" class="btn btn-info ">Ver Detalhes</a></td>
         
@@ -23,12 +25,21 @@
     </tbody>
   </table>
 
-  <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    </ul>
-  </nav>
+ 
+  <div class="container-fluid paginacao">
+    <table class="table table-sm">
+      <tbody>
+        <tr>
+
+          
+          
+          <td><button [disabled]="page==0" routerLink="/patrimonio/page/{{page-1}}" class="btn btn-outline-primary">Anterior</button></td>
+          <td><button class="btn btn-outline-primary">{{page+1}}</button></td>
+          <td><button [disabled]="page > totalPages" class="btn btn-outline-primary" routerLink="/patrimonio/page/{{page+1}}">{{page+2}}</button></td>
+          <td><button [disabled]="" class="btn btn-outline-primary" routerLink="/patrimonio/page/{{page+2}}">{{page+3}}</button></td>
+          <td><button [disabled]="page<totalPages" class="btn btn-outline-primary" routerLink="/patrimonio/page/{{page+1}}">Próxima</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

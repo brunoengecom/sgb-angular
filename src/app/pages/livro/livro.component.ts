@@ -15,6 +15,7 @@ export class LivroComponent implements OnInit {
   empty: boolean = false;
   totalPages: number = 0;
   totalElements: number = 0;
+  linesPerPage: number = 0;
 
   constructor(
     private service: LivroService
@@ -26,7 +27,8 @@ export class LivroComponent implements OnInit {
         this.livros = data['content'];
         this.empty = data['empty'];
         this.totalElements = data['totalElements'];
-        this.totalPage = data['totalPage']
+        this.totalPage = data['totalPage'];
+        this.linesPerPage = data['linesPerPage'];
       }
     );
   }

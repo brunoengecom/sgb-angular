@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { LivroService } from 'src/app/service/livro.service';
 import { switchMap } from 'rxjs/operators';
+import { PatrimonioService } from 'src/app/service/patrimonio.service';
 
 @Component({
   selector: 'app-patrimonio-detalhes',
@@ -16,7 +17,7 @@ export class PatrimonioDetalhesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: LivroService
+    private service: PatrimonioService
   ) { }
 
   ngOnInit(): void {
@@ -25,7 +26,7 @@ export class PatrimonioDetalhesComponent implements OnInit {
       this.service.getPatrimonio(+params.get("id")))
       ).subscribe(patrimonio=>{
         console.log(patrimonio);
-        patrimonio = patrimonio;
+        this.patrimonio = patrimonio;
       });
   }
 

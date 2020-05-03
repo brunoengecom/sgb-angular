@@ -1,11 +1,22 @@
 import { Injectable } from '@angular/core';
 import { RESOURCE } from '../utils/API';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Editora } from '../model/editora';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EditoraService {
+  save(editora: Editora) {
+    let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
+    
+    return this.http.post(this.url,JSON.stringify(editora),{
+      headers:httpHeaders,
+      observe:'response'
+    });
+   
+    
+   }
   url:string = RESOURCE + "/editora";
   linesPerPage:string = "10";
   orderBy:string = "id";

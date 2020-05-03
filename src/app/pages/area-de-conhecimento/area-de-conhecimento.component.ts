@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 import { AreaDeConhecimentoService } from 'src/app/service/area-de-conhecimento.service';
 import { AreaDeConhecimento } from 'src/app/model/Area-de-conhecimento';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
 
 
 @Component({
@@ -11,9 +14,7 @@ import { AreaDeConhecimento } from 'src/app/model/Area-de-conhecimento';
   styleUrls: ['./area-de-conhecimento.component.css']
 })
 export class AreaDeConhecimentoComponent implements OnInit {
-  profileForm = this.fb.group({
-    nome:['']
-  });
+ 
   areaConhecimento: AreaDeConhecimento;
   areasDeConhecimento: Array<AreaDeConhecimento> = [];
   totalPage: number;
@@ -21,20 +22,24 @@ export class AreaDeConhecimentoComponent implements OnInit {
   empty: boolean = false;
   totalPages: number = 0;
   totalElements: number = 0;
+  alert: boolean = false;
+  profileForm: FormGroup;
 
   constructor(
     private service: AreaDeConhecimentoService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    
-    this.service.getAreaDeConhecimento(this.page).subscribe(
+    this.criaFormulario();
+    this.service.getAreasDeConhecimento(this.page).subscribe(
       data =>{
         this.areasDeConhecimento = data['content'];
         this.empty = data['empty'];
         this.totalElements = data['totalElements'];
-        this.totalPage = data['totalPage']
+        this.totalPage = data['totalPage'];
+        
       }
     );
   }
@@ -44,10 +49,25 @@ export class AreaDeConhecimentoComponent implements OnInit {
     this.areasDeConhecimento.push(this.areaConhecimento);
     this.service.save(this.areaConhecimento).subscribe(data=>{
       console.log(data);
-      if(data["status"]==201){
-        
-      }
+      
+        window.location.reload();
+      
+    },
+    error=>{
+      this.handleError(error)
     });
+    
+  }
+      criaFormulario(){
+        
+        this.profileForm = this.fb.group({
+          nome:['',Validators.compose([Validators.required, Validators.minLength(2)])]
+        });
+      }
+  
+  handleError(handleError: HttpErrorResponse){
+    this.alert=true;
+    return throwError(handleError.error.message);
   }
 
 }

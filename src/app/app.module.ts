@@ -24,6 +24,10 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { UsuarioDetalhesComponent } from './pages/usuario/usuario-detalhes/usuario-detalhes.component';
 import { CursoDetalhesComponent } from './pages/curso/curso-detalhes/curso-detalhes.component';
 import { PatrimonioDetalhesComponent } from './pages/patrimonio/patrimonio-detalhes/patrimonio-detalhes.component';
+import { EditoraSaveComponent } from './pages/editora/editora-save/editora-save.component';
+import { TurmaSaveComponent } from './pages/turma/turma-save/turma-save.component';
+import { EmprestimoComponent } from './pages/emprestimo/emprestimo.component';
+import { PatrimonioSaveComponent } from './pages/patrimonio/patrimonio-save/patrimonio-save.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,11 @@ import { PatrimonioDetalhesComponent } from './pages/patrimonio/patrimonio-detal
     UsuarioComponent,
     UsuarioDetalhesComponent,
     CursoDetalhesComponent,
-    PatrimonioDetalhesComponent
+    PatrimonioDetalhesComponent,
+    EditoraSaveComponent,
+    TurmaSaveComponent,
+    EmprestimoComponent,
+    PatrimonioSaveComponent
   ],
   imports: [
     BrowserModule,

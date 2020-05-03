@@ -1,21 +1,24 @@
 <app-navegacao></app-navegacao>
 
 
-
-<div class="container">
-      <h1>Formulario para Edição de Livro</h1>
+<table class="table table-striped">
+    <div class="container" [formGroup]="profileForm">
+      <h1>Edição de Livro</h1>
+      <hr>
+ 
 
       <label for="fname">Edição:</label>
-      <input type="text" id="fname" name="Edição" placeholder="Entre com a Edição">
+      <p></p>
+      <input type="text" id="fname" name="Edição" placeholder="{{livro.editora.nome}}">
   
       <label for="lname">Ano:</label>
-      <input type="text" id="lname" name="Ano" placeholder="Entre com o ano">
+      <input type="text" id="lname" name="Ano" placeholder="{{livro.ano}}">
   
       <label for="lname">Isbn:</label>
-      <input type="text" id="lname" name="Isbn" placeholder="Entre com o Isbn">
+      <input type="text" id="lname" name="Isbn" placeholder="{{livro.isbn}}">
   
       <label for="lname">Área de Conhecimento:</label>
-      <input type="text" id="lname" name="Área de Conhecimento" placeholder="Entre com a Área de conhecimento">
+      <input type="text" id="lname" name="Área de Conhecimento" placeholder="{{livro.areaDeConhecimento}}">
   
       <label for="lname">Editora:</label>
       <input type="text" id="lname" name="Editora" placeholder="Entre com a Editora">
@@ -25,9 +28,11 @@
   
       
         <button routerLink="/livro" class="btn btn-danger " value="Cadastrar">Cancelar</button>
+        <button routerLink="" class="btn btn-success " value="Cadastrar">Salvar</button>
          
 
       
   
     
   </div>
+</table>

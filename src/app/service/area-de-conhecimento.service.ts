@@ -9,23 +9,24 @@ import { Response } from '../utils/response';
   providedIn: 'root'
 })
 export class AreaDeConhecimentoService {
-  save(areaDeConhecimento: AreaDeConhecimento) {
+  save(areaDeConhecimento: AreaDeConhecimento):Observable<HttpResponse<any>> {
    let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
    
-   return this.http.post<AreaDeConhecimento>(this.url,JSON.stringify(areaDeConhecimento),{
+   return this.http.post(this.url,JSON.stringify(areaDeConhecimento),{
      headers:httpHeaders,
      observe:'response'
    });
   
+
    
   }
   
   url:string = RESOURCE + "/areaDeConhecimento";
   linesPerPage:string = "10";
-  orderBy:string = "id";
-  direction:string = "DESC";
+  orderBy:string = "nome";
+  direction:string = "ASC";
 
-  getAreaDeConhecimento(page: number) {
+  getAreasDeConhecimento(page: number) {
     let p = ''+page;
     var getAreaDeConhecimentoURL= this.url + "?linesPerPage=" + this.linesPerPage + "&page=" + p 
     + "&orderBy=" +this.orderBy + "&direction=" +this.direction;

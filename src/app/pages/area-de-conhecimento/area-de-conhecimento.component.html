@@ -1,12 +1,17 @@
 <app-navegacao></app-navegacao>
     <h5 class="botaoAreaDeConhecimento">Cadastrar Área De Conhecimento</h5>
+    <ng-template [ngIf]="alert"><div  class="alert alert-danger" role="alert">
+        Erro ao cadastrar Area de Conhecimento!
+      </div></ng-template>
     <div class="botaoAreaDeConhecimento form-inline" >
 
         <div [formGroup]="profileForm" class="form-group  mx-sm-3 mb-2">        
         <label class="sr-only">Área de Conhecimento</label>
-        <input type="text" class="form-control" formControlName="nome" placeholder="Digite a Área de Conhecimento">     
+        <input  type="text" class="form-control" 
+            formControlName="nome" placeholder="Mínimo 2 Caracteres">  
+               
         </div>
-        <button (click)="onSubmit()" class="btn btn-primary mb-2">Salvar</button>
+        <button [disabled]="!profileForm.valid" (click)="onSubmit()" class="btn btn-primary mb-2">Salvar</button>
     </div>
 
 <table class="table table-striped">

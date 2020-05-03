@@ -1,0 +1,22 @@
+<app-navegacao></app-navegacao>
+
+
+
+<table class="table table-striped">
+    <div class="container" [formGroup]="profileForm">
+    <h1>Cadastro de Editora</h1>
+    <hr>
+ 
+    <label for="fname">Nome:</label>
+    <input type="text" id="fname" name="Nome" 
+    class="form-control" formControlName="nome" placeholder="Preencha seu Nome">
+
+    <label for="lname">CNPJ:</label>
+    <input  type="text" id="lname" name="CNPJ"
+    class="form-control" formControlName="cnpj" placeholder="Preencha seu CNPJ">
+
+    <button [disabled]="!profileForm.valid" (click)="onSubmit()" href="#" class="btn btn-success mb-4" value="Cadastrar">Salvar</button>
+    <button routerLink="/editora" class="btn btn-danger mx-sm-3 mb-4" value="Cadastrar">Voltar</button>
+    
+</div>
+</table>

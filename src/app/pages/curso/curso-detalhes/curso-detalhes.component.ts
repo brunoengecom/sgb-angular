@@ -23,8 +23,7 @@ export class CursoDetalhesComponent implements OnInit {
       switchMap((params: ParamMap)=>
       this.service.getCurso(+params.get("id")))
       ).subscribe(curso=>{
-        console.log(curso);
-        curso = curso;
+        this.curso = curso;
       });
   }
 

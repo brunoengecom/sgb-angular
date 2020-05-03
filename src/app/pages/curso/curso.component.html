@@ -4,13 +4,15 @@
     <thead>
       <th scope="row">Nome:</th>
       <th scope="row">Tipo:</th>
-      <th></th>
+      <th class="align-center" scope="row">Opções:</th>
     </thead>
     <tbody>
       <tr *ngFor="let curso of cursos">     
         <td scope="col">{{curso.nome}}</td>
         <td scope="row">{{curso.tipo}}</td>
-        <td><a routerLink="/curso/{{curso.id}}" class="btn btn-info ">Ver Detalhes</a></td>
+        <td class="align-center"><a routerLink="/curso/{{curso.id}}" class="btn btn-info mx-sm-2  ">Detalhes</a>
+        <a routerLink="/curso/{{curso.id}}" class="btn btn-primary mx-sm-2 ">Turmas</a>
+        <a routerLink="/turma/{{curso.id}}/save" class="btn btn-primary mx-sm-2 ">Cadastrar Turma</a></td>
         
 
       </tr>

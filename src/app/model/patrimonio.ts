@@ -5,4 +5,8 @@ export class Patrimonio{
     id : number;
     numero : string;
     livro : Livro;
+
+    constructor(){
+        this.livro = new Livro;
+    }
 }

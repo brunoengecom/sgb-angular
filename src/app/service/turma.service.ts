@@ -1,11 +1,33 @@
 import { Injectable } from '@angular/core';
 import { RESOURCE } from '../utils/API';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Turma } from '../model/turma';
+import { TurmaDto } from '../dto/turma.dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TurmaService {
+  getPeriodos() {
+    var getURL= this.url+"/periodo";
+    let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
+    return this.http.get<Array<String>>(getURL,{
+      headers:httpHeaders,
+      observe:'body'
+    });
+  }
+  save(turma: Turma) {
+    let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
+    
+    var turmaDto = new TurmaDto(turma);
+    console.log(JSON.stringify(turmaDto));
+    
+    return this.http.post(this.url,JSON.stringify(turmaDto),{
+      headers:httpHeaders,
+      observe:'response'
+    });
+    
+   }
   
   url:string = RESOURCE + "/turma";
   linesPerPage:string = "10";

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Patrimonio } from 'src/app/model/patrimonio';
 import { PatrimonioService } from 'src/app/service/patrimonio.service';
+import { ParamMap, ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-patrimonio',
@@ -14,19 +16,39 @@ export class PatrimonioComponent implements OnInit {
   empty: boolean = false;
   totalPages: number = 0;
   totalElements: number = 0;
+  linesPerPage: number = 0;
+  
 
   constructor( 
-    private service : PatrimonioService 
+    private service : PatrimonioService,
+    private route : ActivatedRoute
 
   ) { }
 
   ngOnInit(): void {
-    this.service.getPatrimonios(this.page).subscribe(
-      data =>{
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap)=>
+      this.service.getPatrimonios(+params.get("id")))
+      ).subscribe(data=>{
+        this.page = data['number'];
         this.patrimonios = data['content'];
         this.empty = data['empty'];
         this.totalElements = data['totalElements'];
-        this.totalPage = data['totalPage']
+        this.totalPage = data['totalPage'];
+        this.linesPerPage = data['number'];
+      });
+    
+  }
+  
+  getPatrimonios(page: number){
+    this.service.getPatrimonios(page).subscribe(
+      data =>{
+        this.page = data['number'];
+        this.patrimonios = data['content'];
+        this.empty = data['empty'];
+        this.totalElements = data['totalElements'];
+        this.totalPage = data['totalPage'];
+        this.linesPerPage = data['linesPerPage']    
       }
     );
   }
