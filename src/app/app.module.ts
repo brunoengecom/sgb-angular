@@ -28,6 +28,7 @@ import { EditoraSaveComponent } from './pages/editora/editora-save/editora-save.
 import { TurmaSaveComponent } from './pages/turma/turma-save/turma-save.component';
 import { EmprestimoComponent } from './pages/emprestimo/emprestimo.component';
 import { PatrimonioSaveComponent } from './pages/patrimonio/patrimonio-save/patrimonio-save.component';
+import { RodapeComponent } from './utils/rodape/rodape.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PatrimonioSaveComponent } from './pages/patrimonio/patrimonio-save/patr
     EditoraSaveComponent,
     TurmaSaveComponent,
     EmprestimoComponent,
-    PatrimonioSaveComponent
+    PatrimonioSaveComponent,
+    RodapeComponent
   ],
   imports: [
     BrowserModule,

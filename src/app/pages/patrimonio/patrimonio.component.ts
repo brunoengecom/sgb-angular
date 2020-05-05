@@ -34,8 +34,8 @@ export class PatrimonioComponent implements OnInit {
         this.patrimonios = data['content'];
         this.empty = data['empty'];
         this.totalElements = data['totalElements'];
-        this.totalPage = data['totalPage'];
-        this.linesPerPage = data['number'];
+        this.totalPages = data['totalPages'];
+        this.linesPerPage = data['size'];
       });
     
   }
@@ -47,8 +47,8 @@ export class PatrimonioComponent implements OnInit {
         this.patrimonios = data['content'];
         this.empty = data['empty'];
         this.totalElements = data['totalElements'];
-        this.totalPage = data['totalPage'];
-        this.linesPerPage = data['linesPerPage']    
+        this.totalPage = data['totalPages'];
+        this.linesPerPage = data['size']    
       }
     );
   }

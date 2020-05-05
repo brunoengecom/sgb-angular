@@ -9,22 +9,27 @@
 
       <label for="fname">Edição:</label>
       <p></p>
-      <input type="text" id="fname" name="Edição" placeholder="{{livro.editora.nome}}">
+      <input formControlName="edicao" required type="text" class="fname" name="Edição" placeholder="Edição">
   
       <label for="lname">Ano:</label>
-      <input type="text" id="lname" name="Ano" placeholder="{{livro.ano}}">
+      <input formControlName="ano" type="text" class="lname" name="Ano" placeholder="Ano">
   
       <label for="lname">Isbn:</label>
-      <input type="text" id="lname" name="Isbn" placeholder="{{livro.isbn}}">
+      <input formControlName="isbn" type="text" class="lname" name="Isbn" placeholder="ISBN">
   
       <label for="lname">Área de Conhecimento:</label>
-      <input type="text" id="lname" name="Área de Conhecimento" placeholder="{{livro.areaDeConhecimento}}">
+      <input formControlName="areaDeConhecimento" type="text" class="lname" name="Área de Conhecimento" placeholder="Àrea de Conhecimento">
   
       <label for="lname">Editora:</label>
-      <input type="text" id="lname" name="Editora" placeholder="Entre com a Editora">
-  
+      <select placeholder="Editora" class="lname" type="text"  name="Editora" 
+      class="form-control" formControlName="editora">  
+   
+        <option></option>
+        <option *ngFor="let ed of editoras">{{ed.nome}}</option>
+        
+    </select>
       <label for="lname">Autores:</label>
-      <input type="text" id="lname" name="Autores" placeholder="Entre com os Autores">
+      <input formControlName="autores" type="text" id="lname" name="Autores" placeholder="{{livro.autores}}">
   
       
         <button routerLink="/livro" class="btn btn-danger " value="Cadastrar">Cancelar</button>

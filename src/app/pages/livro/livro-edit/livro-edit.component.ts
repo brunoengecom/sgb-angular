@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Editora } from 'src/app/model/editora';
 import { throwError } from 'rxjs';
+import { EditoraService } from 'src/app/service/editora.service';
 
 @Component({
   selector: 'app-livro-edit',
@@ -24,24 +25,28 @@ export class LivroEditComponent implements OnInit {
   editora: Editora
   autores: string[];
   nome: string;
+  editoras: Array<Editora>=[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private service: LivroService,
     private fb: FormBuilder,    
-    private livroService: LivroService
-  
+    private editoraService: EditoraService,
   ) { }
 
   ngOnInit(): void {
     this.criaFormulario();
-    
+    this.editoraService.getAllEditoras().subscribe(data=>{
+      this.editoras=data;
+      
+    });
     this.route.paramMap.pipe(
       switchMap((params: ParamMap)=>
       this.service.getLivro(+params.get("id")))
       ).subscribe(livro=>{
         this.livro = livro;
+        this.preenchaCampos(this.livro);
       });
   }
   onSubmit(){
@@ -54,7 +59,7 @@ export class LivroEditComponent implements OnInit {
     this.livro.autores = this.autores;
     this.alert = null;
 
-    this.service.save(this.livro).subscribe(data=>{
+    this.service.edit(this.livro).subscribe(data=>{
       console.log(data);
         this.alert = true; 
         this.profileForm.controls.numero.setValue("");    
@@ -64,7 +69,18 @@ export class LivroEditComponent implements OnInit {
  
     });
 
-}  //handleError(error: any) {
+} 
+  preenchaCampos(livro:Livro){
+    this.profileForm.controls.edicao.setValue(this.livro.edicao);
+    this.profileForm.controls.ano.setValue(this.livro.ano);
+    this.profileForm.controls.isbn.setValue(this.livro.isbn);
+    this.profileForm.controls.areaDeConhecimento.setValue(this.livro.areaDeConhecimento);
+    this.profileForm.controls.editora.setValue(this.livro.editora.nome);
+    this.profileForm.controls.autores.setValue(this.livro.autores);
+    
+  }
+
+//handleError(error: any) {
   handleError(error: any) {
     throw new Error("Method not implemented.");
   }
@@ -73,7 +89,12 @@ export class LivroEditComponent implements OnInit {
 //}
 criaFormulario(){
   this.profileForm = this.fb.group({
-    numero:['', Validators.compose([Validators.required])]
+    edicao:['', Validators.compose([Validators.required])],
+    ano:['', Validators.compose([Validators.required])],
+    isbn:['', Validators.compose([Validators.required])],
+    areaDeConhecimento:['', Validators.compose([Validators.required])],
+    editora:['', Validators.compose([Validators.required])],
+    autores:['', Validators.compose([Validators.required])]
   });
   }
 

@@ -26,9 +26,11 @@ export class EditoraService {
     let p = ''+page;
     var getEditoraURL= this.url + "?linesPerPage=" + this.linesPerPage + "&page=" + p 
     + "&orderBy=" +this.orderBy + "&direction=" +this.direction;
-    console.log(getEditoraURL);
-   return this.http.get(getEditoraURL,
-   {responseType:"json"});
+   return this.http.get(getEditoraURL,{responseType:"json"});
+  }
+  getAllEditoras(){
+    var getEditoraURL= this.url + "/all";
+    return this.http.get<Array<Editora>>(getEditoraURL,{responseType:"json"});
   }
 
   constructor(private http:HttpClient) { }

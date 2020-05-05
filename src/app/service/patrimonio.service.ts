@@ -25,7 +25,7 @@ export class PatrimonioService {
     });
   }
   url:string = RESOURCE + "/patrimonio";
-  linesPerPage:number = 10;
+  linesPerPage:number = 8;
   orderBy:string = "id";
   direction:string = "DESC";
   

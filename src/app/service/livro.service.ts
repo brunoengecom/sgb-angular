@@ -8,6 +8,10 @@ import { LivroDto } from '../dto/livro.dto';
   providedIn: 'root'
 })
 export class LivroService {
+  edit(livro: Livro) {
+    
+  }
+
   save(livro: Livro) {
     let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
     let livroDto = new LivroDto;
