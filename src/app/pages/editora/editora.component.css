@@ -3,3 +3,8 @@ table{
     margin-left: 10%;
     border: 1px solid #DCDCDC;
   }
+  .paginacao{
+    width:50%;
+    margin-top: 10px;
+    margin-left: 25%;
+  }

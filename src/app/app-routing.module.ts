@@ -21,19 +21,24 @@ import { EditoraSaveComponent } from './pages/editora/editora-save/editora-save.
 import { TurmaSaveComponent } from './pages/turma/turma-save/turma-save.component';
 import { EmprestimoComponent } from './pages/emprestimo/emprestimo.component';
 import { PatrimonioSaveComponent } from './pages/patrimonio/patrimonio-save/patrimonio-save.component';
+import { UsuarioSaveComponent } from './pages/usuario/usuario-save/usuario-save.component';
+import { ListLivrosComponent } from './pages/area-de-conhecimento/list-livros/list-livros.component';
 
 
 const routes:Routes=[
   {path:'editora/save', component: EditoraSaveComponent},
   {path:'editora', component: EditoraComponent},
+  {path:'list-livros/:id', component: ListLivrosComponent},
   {path:'area-de-conhecimento', component: AreaDeConhecimentoComponent},
   {path: 'patrimonio/page/:id', component: PatrimonioComponent},
   {path: 'patrimonio/:id/save', component: PatrimonioSaveComponent},
   {path: 'patrimonio/:id', component: PatrimonioDetalhesComponent},  
   {path: 'turma/:id/save', component: TurmaSaveComponent},
+  {path: 'turma/save', component: TurmaSaveComponent},
   {path: 'turma', component: TurmaComponent},
   {path: 'curso/:id', component: CursoDetalhesComponent},
   {path: 'curso', component: CursoComponent},
+  {path: 'usuario/save', component: UsuarioSaveComponent},
   {path: 'usuario/:id', component: UsuarioDetalhesComponent},
   {path: 'usuario', component: UsuarioComponent},
   {path:'emprestimo',component: EmprestimoComponent},

@@ -9,15 +9,19 @@ import { LivroDto } from '../dto/livro.dto';
 })
 export class LivroService {
   edit(livro: Livro) {
-    
+    let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
+    let livroDto = new LivroDto(livro);
+    return this.http.put(this.url+"/"+livro.id,JSON.stringify(livroDto),{
+      headers:httpHeaders,
+      observe:'response'
+    });
   }
 
   save(livro: Livro) {
     let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
-    let livroDto = new LivroDto;
-    livroDto.nome = livro.nome;
+    let livroDto = new LivroDto(livro);
+    console.log(JSON.stringify(livroDto));
     
-
     return this.http.post(this.url,JSON.stringify(livroDto),{
       headers:httpHeaders,
       observe:'response'

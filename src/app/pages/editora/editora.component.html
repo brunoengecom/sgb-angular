@@ -23,3 +23,20 @@
           </tr>
     </tbody>
 </table>
+<div class="container-fluid paginacao">
+    <table class="table table-sm">
+      <tbody>
+        <tr>
+
+          
+          
+          <td><button [disabled]="page==0" routerLink="/patrimonio/page/{{page-1}}" class="btn btn-outline-primary">Anterior</button></td>
+          <td><button class="btn btn-outline-primary">{{page+1}}</button></td>
+          <td><button [disabled]="page +1 >= totalPages" class="btn btn-outline-primary" routerLink="/patrimonio/page/{{page+1}}">{{page+2}}</button></td>
+          <td><button [disabled]="page +2 >= totalPages" class="btn btn-outline-primary" routerLink="/patrimonio/page/{{page+2}}">{{page+3}}</button></td>
+          <td><button [disabled]="page +1 >= totalPages" class="btn btn-outline-primary" routerLink="/patrimonio/page/{{page+1}}">Próxima</button></td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>

@@ -14,8 +14,6 @@ export class EditoraService {
       headers:httpHeaders,
       observe:'response'
     });
-   
-    
    }
   url:string = RESOURCE + "/editora";
   linesPerPage:string = "10";

@@ -29,6 +29,8 @@ import { TurmaSaveComponent } from './pages/turma/turma-save/turma-save.componen
 import { EmprestimoComponent } from './pages/emprestimo/emprestimo.component';
 import { PatrimonioSaveComponent } from './pages/patrimonio/patrimonio-save/patrimonio-save.component';
 import { RodapeComponent } from './utils/rodape/rodape.component';
+import { UsuarioSaveComponent } from './pages/usuario/usuario-save/usuario-save.component';
+import { ListLivrosComponent } from './pages/area-de-conhecimento/list-livros/list-livros.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { RodapeComponent } from './utils/rodape/rodape.component';
     TurmaSaveComponent,
     EmprestimoComponent,
     PatrimonioSaveComponent,
-    RodapeComponent
+    RodapeComponent,
+    UsuarioSaveComponent,
+    ListLivrosComponent
   ],
   imports: [
     BrowserModule,

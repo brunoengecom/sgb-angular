@@ -33,6 +33,9 @@ export class AreaDeConhecimentoService {
    return this.http.get(getAreaDeConhecimentoURL,
    {responseType:"json"});
   }
-
+  getAllAreasDeConhecimento(){
+    var getAreaDeConhecimentoURL= this.url + "/all";
+    return this.http.get<Array<AreaDeConhecimento>>(getAreaDeConhecimentoURL,{responseType:"json"});
+  }
   constructor(private http:HttpClient) { }
 }

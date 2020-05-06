@@ -28,6 +28,7 @@ export class EditoraSaveComponent implements OnInit {
     this.editora = new Editora;
     this.editora.nome = this.profileForm.value.nome;
     this.editora.cnpj = this.profileForm.value.cnpj;
+    
     this.service.save(this.editora).subscribe(data=>{
       console.log(data);
       

@@ -3,32 +3,54 @@
 
 
 <table class="table table-striped">
-    <div class="container">
+    <div class="container" [formGroup]="profileForm">
     <h1>Cadastro de Livro</h1>
     <hr>
  
-
+    <label for="fname">Nome:</label>
+    <input type="text"  name="Nome" 
+    class="form-control" formControlName="nome" placeholder="Entre com o nome:">
 
     <label for="fname">Edição:</label>
-    <input type="text" id="fname" name="Edição" placeholder="Entre com a Edição">
+    <input type="text"  name="Edição" 
+    class="form-control" formControlName="edicao" placeholder="Entre com a Edição:">
 
     <label for="lname">Ano:</label>
-    <input type="text" id="lname" name="Ano" placeholder="Entre com o ano">
+    <input type="text"  name="Ano" 
+    class="form-control" formControlName="ano" placeholder="Entre com o ano:">
 
     <label for="lname">Isbn:</label>
-    <input type="text" id="lname" name="Isbn" placeholder="Entre com o Isbn">
+    <input type="text"  name="Isbn"
+    class="form-control" formControlName="isbn" placeholder="Entre com o Isbn:">
 
-    <label for="lname">Área de Conhecimento:</label>
-    <input type="text" id="lname" name="Área de Conhecimento" placeholder="Entre com a Área de conhecimento">
+    <label for="fname">Áreas de Conhecimento:</label>    
+    <select placeholder="Áreas de Conhecimento" type="text" id="fname" name="areaDeConhecimento" 
+    class="form-control" formControlName="areaDeConhecimento">  
+   
+        <option></option>
+        <option value="{{ar.id}}" *ngFor="let ar of areasDeConhecimento">{{ar.nome}}</option>
+        
+    </select>
 
-    <label for="lname">Editora:</label>
-    <input type="text" id="lname" name="Editora" placeholder="Entre com a Editora">
+    <label for="fname">Editora:</label>    
+    <select placeholder="Editora" type="text" id="fname" name="editora" 
+    class="form-control" formControlName="editora">  
+   
+        <option></option>
+        <option value="{{ed.id}}" *ngFor="let ed of editoras">{{ed.nome}}</option>
+        
+    </select>
 
     <label for="lname">Autores:</label>
-    <input type="text" id="lname" name="Autores" placeholder="Entre com os Autores">
+    <input type="text"  name="Autores" 
+    class="form-control" formControlName="autores" placeholder="Entre com os Autores:">
 
+    <label for="lname">Valor:</label>
+    <input type="text"  name="valor" 
+    class="form-control" formControlName="valor" placeholder="Entre com o valor:">
+
+    <button [disabled]="!profileForm.valid" (click)="onSubmit()" href="#" class="btn btn-success mb-4" value="Cadastrar">Salvar</button>
+    <button routerLink="/livro" class="btn btn-danger mx-sm-3 mb-4" value="Cadastrar">Voltar</button>
     
-    <button routerLink="/livro" class="btn btn-danger " value="Cadastrar">Cancelar</button>
-    <button href="#" class="btn btn-success " value="Cadastrar">Salvar</button>
 </div>
 </table>

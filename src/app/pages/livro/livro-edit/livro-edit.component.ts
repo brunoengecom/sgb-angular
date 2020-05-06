@@ -7,6 +7,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Editora } from 'src/app/model/editora';
 import { throwError } from 'rxjs';
 import { EditoraService } from 'src/app/service/editora.service';
+import { AreaDeConhecimentoService } from 'src/app/service/area-de-conhecimento.service';
+import { AreaDeConhecimento } from 'src/app/model/Area-de-conhecimento';
+import { log } from 'util';
 
 @Component({
   selector: 'app-livro-edit',
@@ -22,10 +25,12 @@ export class LivroEditComponent implements OnInit {
   edicao: number;
   ano: number;
   isbn: string;
-  editora: Editora
+  editora: Editora;
+  areaDeConhecimento: AreaDeConhecimento;
   autores: string[];
   nome: string;
   editoras: Array<Editora>=[];
+  areasDeConhecimento: Array<AreaDeConhecimento>=[];
 
   constructor(
     private route: ActivatedRoute,
@@ -33,10 +38,14 @@ export class LivroEditComponent implements OnInit {
     private service: LivroService,
     private fb: FormBuilder,    
     private editoraService: EditoraService,
+    private areasDeConhecimentoService: AreaDeConhecimentoService
   ) { }
 
   ngOnInit(): void {
     this.criaFormulario();
+    this.areasDeConhecimentoService.getAllAreasDeConhecimento().subscribe(data=>{
+      this.areasDeConhecimento = data;
+    })
     this.editoraService.getAllEditoras().subscribe(data=>{
       this.editoras=data;
       
@@ -47,6 +56,7 @@ export class LivroEditComponent implements OnInit {
       ).subscribe(livro=>{
         this.livro = livro;
         this.preenchaCampos(this.livro);
+        console.log(livro);
       });
   }
   onSubmit(){
@@ -74,8 +84,8 @@ export class LivroEditComponent implements OnInit {
     this.profileForm.controls.edicao.setValue(this.livro.edicao);
     this.profileForm.controls.ano.setValue(this.livro.ano);
     this.profileForm.controls.isbn.setValue(this.livro.isbn);
-    this.profileForm.controls.areaDeConhecimento.setValue(this.livro.areaDeConhecimento);
-    this.profileForm.controls.editora.setValue(this.livro.editora.nome);
+    this.profileForm.controls.areaDeConhecimento.setValue(this.livro.areaDeConhecimento.id);
+    this.profileForm.controls.editora.setValue(this.livro.editora.id);
     this.profileForm.controls.autores.setValue(this.livro.autores);
     
   }

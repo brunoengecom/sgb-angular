@@ -22,3 +22,9 @@ table{
   .align-center{
     text-align: center;
   }
+
+  .paginacao{
+    width:50%;
+    margin-top: 10px;
+    margin-left: 25%;
+  }

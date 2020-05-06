@@ -1,0 +1,40 @@
+<app-navegacao></app-navegacao>
+
+
+
+<table class="table table-striped">
+    <div class="container">
+    <h1>Cadastro de Usuário</h1>
+    <hr>
+ 
+    <label for="fname">Nome:</label>
+    <input type="text" id="fname" name="nome" placeholder="Entre com o nome:">
+
+    <label for="fname">Email:</label>
+    <input type="text" id="lname" name="email" placeholder="Entre com o Email:">
+
+    <label for="fname">Data de Nascimento:</label>
+    <input id="campoData" type="date" id="fname" name="dtInicio" 
+    placeholder="dd/mm/aaaa" data-mask="00/00/0000" maxlength="8" autocomplete="off"
+    class="form-control data-mask" formControlName="Entre com a Data de Nascimento:" required >
+
+    <label for="lname">CPF:</label>
+    <input type="text" id="lname" name="cpf" placeholder="Entre com o CPF">
+
+    <label for="fname">Status:</label>    
+    <select placeholder="Status" id="campoData" type="text" id="fname" name="Status" 
+    class="form-control" formControlName="periodo">  
+   
+        <option></option>
+        <option *ngFor="let status of status">{{status}}</option>
+        
+    </select>
+
+    <label for="lname">Autores:</label>
+    <input type="text" id="lname" name="Autores" placeholder="Entre com os Autores">
+
+    
+    <button routerLink="/livro" class="btn btn-danger " value="Cadastrar">Cancelar</button>
+    <button href="#" class="btn btn-success " value="Cadastrar">Salvar</button>
+</div>
+</table>
