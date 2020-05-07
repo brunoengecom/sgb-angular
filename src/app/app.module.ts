@@ -31,6 +31,7 @@ import { PatrimonioSaveComponent } from './pages/patrimonio/patrimonio-save/patr
 import { RodapeComponent } from './utils/rodape/rodape.component';
 import { UsuarioSaveComponent } from './pages/usuario/usuario-save/usuario-save.component';
 import { ListLivrosComponent } from './pages/area-de-conhecimento/list-livros/list-livros.component';
+import { EmprestimoSaveComponent } from './pages/emprestimo/emprestimo-save/emprestimo-save.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ListLivrosComponent } from './pages/area-de-conhecimento/list-livros/li
     PatrimonioSaveComponent,
     RodapeComponent,
     UsuarioSaveComponent,
-    ListLivrosComponent
+    ListLivrosComponent,
+    EmprestimoSaveComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@
       <tr *ngFor="let livro of livros">
         <th scope="row">{{livro.nome}}</th>
 
-        <td scope="row">{{livro.areaDeConhecimento}}</td>     
+        <td scope="row">{{livro.areaDeConhecimento.nome}}</td>     
         <td scope="col">{{livro.editora.nome}}</td>
 
         <td><a routerLink="/livro/{{livro.id}}" class="btn btn-info ">Ver Detalhes</a></td>

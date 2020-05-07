@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Livro } from 'src/app/model/livro';
 import { LivroService } from 'src/app/service/livro.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-livros',
@@ -17,11 +19,25 @@ export class ListLivrosComponent implements OnInit {
   linesPerPage: number = 0;
 
   constructor(
-    private service: LivroService
+    private service: LivroService,
+    private route: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
-      this.service.getLivros(this.page).subscribe(
+      this.route.paramMap.pipe(
+        switchMap((params: ParamMap)=>
+        this.service.getLivrosByAreaDeConhecimento(+params.get("id")))
+      ).subscribe(
+        data =>{
+          this.livros = data['content'];
+          this.empty = data['empty'];
+          this.totalElements = data['totalElements'];
+          this.totalPage = data['totalPage'];
+          this.linesPerPage = data['linesPerPage'];
+        }
+      );
+
+      this.service.getLivrosByAreaDeConhecimento(this.page).subscribe(
         data =>{
           this.livros = data['content'];
           this.empty = data['empty'];

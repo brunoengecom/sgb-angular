@@ -25,7 +25,7 @@
     <tbody>
         <tr *ngFor="let areaDeConhecimento of areasDeConhecimento">
             <th scope="row">{{areaDeConhecimento.nome}}</th> 
-            <td><a routerLink="/list-livros/{{areaDeConhecimento.id}}" class="btn btn-info " 
+            <td><a routerLink="/livro/{{areaDeConhecimento.id}}/area-de-conhecimento" class="btn btn-info " 
                 data-ng-repeat="user in User.users | orderBy:'name'false | filter:search">Listar Livros</a></td>     
             
                 <td><a routerLink="/areaDeConhecimento/{{areaDeConhecimento.id}}" class="btn btn-warning ">Editar</a></td>      

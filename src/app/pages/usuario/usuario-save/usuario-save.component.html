@@ -3,38 +3,49 @@
 
 
 <table class="table table-striped">
-    <div class="container">
+    <div class="container" [formGroup]="profileForm">
     <h1>Cadastro de Usuário</h1>
     <hr>
  
     <label for="fname">Nome:</label>
-    <input type="text" id="fname" name="nome" placeholder="Entre com o nome:">
+    <input type="text" id="nome" name="nome" placeholder="Entre com o nome:" required>
 
     <label for="fname">Email:</label>
-    <input type="text" id="lname" name="email" placeholder="Entre com o Email:">
+    <input type="text" id="email" name="email" placeholder="Entre com o Email:" required>
 
     <label for="fname">Data de Nascimento:</label>
-    <input id="campoData" type="date" id="fname" name="dtInicio" 
+    <input id="dataNasc" type="date" id="fname" name="dtInicio" 
     placeholder="dd/mm/aaaa" data-mask="00/00/0000" maxlength="8" autocomplete="off"
-    class="form-control data-mask" formControlName="Entre com a Data de Nascimento:" required >
+    class="form-control data-mask" formControlName="dataNasc" required >
 
     <label for="lname">CPF:</label>
-    <input type="text" id="lname" name="cpf" placeholder="Entre com o CPF">
+    <input type="text" id="cpf" name="cpf" placeholder="Entre com o CPF" required>
 
-    <label for="fname">Status:</label>    
-    <select placeholder="Status" id="campoData" type="text" id="fname" name="Status" 
-    class="form-control" formControlName="periodo">  
+    <label for="fname">Tipo de Cadastro:</label>    
+    <select  id="tipoCadastro" type="text" id="fname" name="tipoCadastro" 
+    class="form-control" formControlName="tipoCadastro" required>  
    
         <option></option>
-        <option *ngFor="let status of status">{{status}}</option>
+        <option *ngFor="let enum of enumRoles">{{enum}}</option>
         
     </select>
 
-    <label for="lname">Autores:</label>
-    <input type="text" id="lname" name="Autores" placeholder="Entre com os Autores">
+    <div *ngIf="profileForm.value.tipoCadastro=='ALUNO'">
+        <label for="fname">Código da Turma:</label>
+        <input type="text" id="turma" name="turma" placeholder="Insira o código da Turma:" required>
 
+        <label for="fname">Matrícula:</label>
+        <input type="text" id="matricula" name="matricula" placeholder="Insira a Matrícula:" required>
+        
+    </div>
+
+    <div *ngIf="profileForm.value.tipoCadastro=='FUNCIONARIO'">
+        <label for="fname">Cargo:</label>
+        <input type="text" id="cargo" name="cargo" placeholder="Insira o Cargo:" required>
+    </div>
+
+    <button routerLink="/livro" class="btn btn-danger" value="Cadastrar">Cancelar</button>
+    <button [disabled]="!profileForm.valid" (click)="onSubmit()" class="btn btn-primary " value="Cadastrar">Salvar</button>
     
-    <button routerLink="/livro" class="btn btn-danger " value="Cadastrar">Cancelar</button>
-    <button href="#" class="btn btn-success " value="Cadastrar">Salvar</button>
 </div>
 </table>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-usuario-save',
@@ -11,35 +12,40 @@ import { Router } from '@angular/router';
 })
 export class UsuarioSaveComponent implements OnInit {
   profileForm: FormGroup;
-  usuario: Usuario
+  //enumRoles: Observable<Array<string>>;
+  enumRoles: Array<string>=[];
+
 
   constructor(
     private fb: FormBuilder,
-    private service: UsuarioService,
-    private router: Router
+    private service: UsuarioService
   ) { }
 
-  ngOnInit(): void {
-    this.criaFormulario();
-  }
-  criaFormulario() {
-    throw new Error("Method not implemented.");
-  }
   onSubmit(){
-    this.usuario = new Usuario;
-    this.usuario.nome = this.profileForm.value.nome;
-    this.usuario.email = this.profileForm.value.email;
+    
+  }
 
-    this.service.save(this.usuario).subscribe(data=>{
-      console.log(data);
-      
-        window.location.reload();
-      
-    },
-    error=>{
-      this.handleError(error)
+  ngOnInit(): void {
+    //inicia o componente ele chama o metodo
+    this.criaFormulario();
+    //this.enumRoles = this.service.getEnums();
+    //subscribe e quando quer pegar a resposta de um metodo assincrono
+    this.service.getEnums().subscribe(data=>{
+      this.enumRoles = data;     
     });
-}handleError(error: any) {
-  throw new Error("Method not implemented.");
-}
-}
+  }
+  criaFormulario(){
+    this.profileForm = this.fb.group({
+      nome:['', Validators.compose([Validators.required])],
+      email:['', Validators.compose([Validators.required])],
+      dataNasc:['', Validators.compose([Validators.required])],
+      cpf:['', Validators.compose([Validators.required])],
+      tipoCadastro:['',Validators.compose([Validators.required])],
+      turma:[''],
+      matricula:[''],
+      senha:[''],
+      cargo:['']
+
+    })
+  }
+}   

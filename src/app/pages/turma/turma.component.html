@@ -2,6 +2,7 @@
     
 <table class="table table-striped">
     <thead>
+      <th scope="row">Código</th>
       <th scope="row">Data de Inicio:</th>
       <th scope="row">Data de Fim:</th>
       <th scope="row">Periodo:</th>
@@ -10,6 +11,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let turma of turmas">
+        <td scope="row">{{turma.id}}</td>
         <td scope="row">{{turma.dtInicio | date:'dd/MM/yyyy'}}</td>
         <td scope="row">{{turma.dtFim | date:'dd/MM/yyyy'}}</td>     
         <td scope="col">{{turma.periodo}}</td>

@@ -8,6 +8,11 @@ import { LivroDto } from '../dto/livro.dto';
   providedIn: 'root'
 })
 export class LivroService {
+  url:string = RESOURCE + "/livro";
+  linesPerPage:string = "10";
+  orderBy:string = "id";
+  direction:string = "DESC";
+  
   edit(livro: Livro) {
     let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
     let livroDto = new LivroDto(livro);
@@ -27,10 +32,7 @@ export class LivroService {
       observe:'response'
     });
   }
-  url:string = RESOURCE + "/livro";
-  linesPerPage:string = "10";
-  orderBy:string = "id";
-  direction:string = "DESC";
+ 
 
   getLivros(page: Number) {
     let p = ''+page;
@@ -44,6 +46,11 @@ export class LivroService {
   getLivro(id:number):Observable<Livro>{
     let valor = ''+id;
      return this.http.get<Livro>(this.url+"/"+valor, {responseType:"json"});     
+  } 
+
+  getLivrosByAreaDeConhecimento(id:number){
+    let valor = ''+id;
+     return this.http.get(this.url+"/"+valor+"/areaDeConhecimento", {responseType:"json"});     
   } 
 
   constructor(private http:HttpClient) { }

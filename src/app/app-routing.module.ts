@@ -23,12 +23,12 @@ import { EmprestimoComponent } from './pages/emprestimo/emprestimo.component';
 import { PatrimonioSaveComponent } from './pages/patrimonio/patrimonio-save/patrimonio-save.component';
 import { UsuarioSaveComponent } from './pages/usuario/usuario-save/usuario-save.component';
 import { ListLivrosComponent } from './pages/area-de-conhecimento/list-livros/list-livros.component';
+import { EmprestimoSaveComponent } from './pages/emprestimo/emprestimo-save/emprestimo-save.component';
 
 
 const routes:Routes=[
   {path:'editora/save', component: EditoraSaveComponent},
-  {path:'editora', component: EditoraComponent},
-  {path:'list-livros/:id', component: ListLivrosComponent},
+  {path:'editora', component: EditoraComponent},  
   {path:'area-de-conhecimento', component: AreaDeConhecimentoComponent},
   {path: 'patrimonio/page/:id', component: PatrimonioComponent},
   {path: 'patrimonio/:id/save', component: PatrimonioSaveComponent},
@@ -41,7 +41,9 @@ const routes:Routes=[
   {path: 'usuario/save', component: UsuarioSaveComponent},
   {path: 'usuario/:id', component: UsuarioDetalhesComponent},
   {path: 'usuario', component: UsuarioComponent},
+  {path:'emprestimo/save',component: EmprestimoSaveComponent},
   {path:'emprestimo',component: EmprestimoComponent},
+  {path:'livro/:id/area-de-conhecimento', component: ListLivrosComponent},
   {path:'livro/livro-cadastrar',component: LivroCadastrarComponent},
   {path:'livro/edit/:id', component: LivroEditComponent},
   {path:'livro/:id', component: LivroDetalhesComponent},

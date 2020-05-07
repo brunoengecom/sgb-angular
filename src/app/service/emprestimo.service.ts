@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { RESOURCE } from '../utils/API';
 import { HttpClient } from '@angular/common/http';
+import { Usuario } from '../model/usuario';
+import { Observable } from 'rxjs';
+import { Emprestimo } from '../model/emprestimo';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +14,11 @@ export class EmprestimoService {
   linesPerPage:string = "10";
   orderBy:string = "id";
   direction:string = "DESC";
+
+  getCPF(cpf: number):Observable<Usuario> {
+    let valor = ''+cpf;
+    return this.http.get<Usuario>(this.url+"/"+valor, {responseType:"json"});
+  }
   
   getEmprestimos(page: number) {
     let p = ''+page;
