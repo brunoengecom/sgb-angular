@@ -16,11 +16,14 @@ import { log } from 'util';
   templateUrl: './livro-cadastrar.component.html',
   styleUrls: ['./livro-cadastrar.component.css']
 })
+
+
 export class LivroCadastrarComponent implements OnInit {
   livro: Livro;
   profileForm: FormGroup;
   editoras: Array<Editora>=[];
   areasDeConhecimento: Array<AreaDeConhecimento>=[];
+  public autores: Array<string>=[""];
 
   constructor(
     private fb: FormBuilder,
@@ -41,7 +44,7 @@ export class LivroCadastrarComponent implements OnInit {
   }
   
   onSubmit(){
-
+/*
     this.livro = new Livro;
     this.livro.editora = new Editora;
     this.livro.areaDeConhecimento = new AreaDeConhecimento;
@@ -63,7 +66,8 @@ export class LivroCadastrarComponent implements OnInit {
     },
     error=>{
       this.handleError(error)
-    });
+    }); */
+    console.log(this.profileForm.value);
     
   }
   handleError(error: HttpErrorResponse) {
@@ -75,12 +79,16 @@ export class LivroCadastrarComponent implements OnInit {
       edicao:['',Validators.compose([Validators.required, Validators.minLength(1)])],
       ano:['',Validators.compose([Validators.required, Validators.minLength(2)])],
       isbn:['',Validators.compose([Validators.required, Validators.minLength(2)])],
-      autores:['',Validators.compose([Validators.required, Validators.minLength(2)])],
+      autores:[this.autores,Validators.compose([Validators.required, Validators.minLength(2)])],
       areaDeConhecimento:['',Validators.compose([Validators.required])],
       editora:['',Validators.compose([Validators.required])],
       valor:['',Validators.compose([Validators.required, Validators.minLength(2)])],
-
+      
     });
+  }
+
+  addAutor() {
+    this.autores.push("");
   }
 
 }

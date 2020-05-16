@@ -1,16 +1,137 @@
 <app-navegacao></app-navegacao>
- 
+
+
 <table class="table table-striped">
-<div id="divBusca">
-    
-    <input type="text" id="txtBusca" placeholder="Insira o CPF"/>
-    <button id="btnBusca">Buscar</button>
-  </div>
- 
+   <div class="usuario">
+    <div [formGroup]="profileFormUsuario" >
+        <div class="form-row align-items-center">
+            <div class="col-auto my-1">
+              <label class="sr-only" for="inlineFormInputGroupUsername">CPF:</label>
+              <div class="input-group">                
+                <input type="text" id="txtBusca" class="form-control" placeholder="Insira o CPF" formControlName="cpf">
+                </div>
+            </div>
+            
+            <div class="col-sm-5 my-1">
+              <button [disabled]="!profileFormUsuario.valid" (click)="onSubmitCPF()" 
+              type="submit" class="btn btn-primary">Buscar Usuário</button>
+            </div>
+        </div>
+        <div *ngIf="alertUsuario" class="alert alert-danger" role="alert">
+            Usuário Não Encontrado!
+        </div>
+    </div>
+
   
-  
- 
+<div *ngIf="usuario">
     
+        <h1>Dados do Usuário</h1>
+        
+        <tbody>
+            <tr>
+                <th scope="row">Nome:</th> 
+                <td>{{usuario.nome}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Email:</th> 
+                <td>{{usuario.email}}</td>
+            </tr>
+            <tr>
+                <th  scope="row">Data de Nascimento:</th> 
+                <td>{{usuario.dataNasc | date:'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr>
+                <th scope="row">CPF:</th> 
+                <td>{{usuario.cpf}}</td>
+            </tr>
+            <tr *ngIf="usuario.roles.indexOf('FUNCIONARIO')>-1">
+                <th scope="row">Status:</th> 
+                <td>{{usuario.status}}</td>
+            </tr>
+            <tr *ngIf="usuario.roles.indexOf('FUNCIONARIO')>-1">
+                <th scope="row">Cargo:</th> 
+                <td>{{usuario.cargo}}</td>
+            </tr>
+            
+            <tr>
+                <th scope="row">Emprestimos Ativos:</th> 
+                <td>{{emprestimosAtivos}} <span class="alert" *ngIf="emprestimosAtivos > 2">Obs: Usuário atingiu o limite de empréstimos</span></td>
+            
+            </tr>
+
+            <tr>
+                <th scope="row">Multas:</th> 
+                <td>{{multas.length}} <button *ngIf="multas.length > 0" class="btn btn-info space">Ver detalhes</button></td>
+                
+            </tr>
+        </tbody>
+        
+</div>
+
+
+
+   </div>
+
+   <div class="patrimonio">
+    
+    <div [formGroup]="profileFormEmprestimo" >
+        <div class="form-row align-items-center">
+            <div class="col-auto my-1">
+              <label class="sr-only" for="inlineFormInputGroupUsername">Patrimônio:</label>
+              <div class="input-group">                
+                <input type="text" id="txtBusca" class="form-control" placeholder="Insira o Patrimônio" formControlName="patrimonio">
+                </div>
+            </div>
+            
+            <div class="col-sm-5 my-1">
+              <button [disabled]="!profileFormEmprestimo.valid" (click)="onSubmitPatrimonio()" 
+              type="submit" class="btn btn-primary">Buscar Patrimônio</button>
+            </div>
+            <div *ngIf="alertPatrimonio" class="alert alert-danger" role="alert">
+                Patrimônio Não Encontrado!
+            </div>
+        </div>
+    </div>
+
+  
+<div *ngIf="patrimonio">
+    
+        <h1>Dados do Livro</h1>
+        
+        <tbody>
+            <tr>
+                <th scope="row">Nome:</th> 
+                <td>{{patrimonio.livro.nome}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Edição:</th> 
+                <td>{{patrimonio.livro.edicao}}</td>
+            </tr>
+            
+            <tr>
+                <th scope="row">Isbn:</th> 
+                <td>{{patrimonio.livro.isbn}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Area de Conhecimento:</th> 
+                <td>{{patrimonio.livro.areaDeConhecimento.nome}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Editora:</th> 
+                <td>{{patrimonio.livro.editora.nome}}</td>
+            </tr>
+            
+            
+            
+        </tbody>
+        
+</div>
+</div>
+
 </table>
 
-    <h1 *ngFor="let cp of cpf">oi{{cpf}}</h1>
+<div  class=" cadastrar">
+    <button [disabled]="usuario==null || patrimonio==null || emprestimosAtivos > 3 || multas.length > 0" 
+        (click)="onSubmitEmprestimo()" 
+    type="submit" class="btn btn-primary ">Cadastrar Emprestimo</button>
+</div>

@@ -41,16 +41,31 @@
         
     </select>
 
-    <label for="lname">Autores:</label>
-    <input type="text"  name="Autores" 
-    class="form-control" formControlName="autores" placeholder="Entre com os Autores:">
+    
+
+    
+      
+
+
 
     <label for="lname">Valor:</label>
     <input type="text"  name="valor" 
-    class="form-control" formControlName="valor" placeholder="Entre com o valor:">
+    class="form-control" formControlName="valor" placeholder="Insira o valor:">
 
-    <button [disabled]="!profileForm.valid" (click)="onSubmit()" href="#" class="btn btn-success mb-4" value="Cadastrar">Salvar</button>
+    
+        
+    <label for="lname">Autores:</label>   
+    <div *ngFor="let autor of autores; let i = index;">
+        <input type="text" formControlName = "autores[i]" name="autor_{{i}}"/>
+    </div>
+
+    <!-- Add button -->
+    <button type="button" (click)="addAutor()">Adicionar Autor</button> 
+    <!-- ngFor code --> 
+    
+    <button  (click)="onSubmit()" href="#" class="btn btn-success mb-4" value="Cadastrar">Salvar</button>
     <button routerLink="/livro" class="btn btn-danger mx-sm-3 mb-4" value="Cadastrar">Voltar</button>
     
 </div>
 </table>
+  

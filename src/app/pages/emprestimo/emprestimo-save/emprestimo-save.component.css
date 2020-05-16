@@ -1,29 +1,41 @@
-#divBusca{
-    background-color:#E0EEEE;
-    border:solid 2px #5F9EA0;
-    border-radius: 5px;
-    width:270.3px;
-    height:34px;
-  }
-   
-  #txtBusca{
-    float:left;
-    background-color:transparent;
-    padding-left:5px; 
-    font-size:18px;
-    border:none;
-    height:32px;
-    width:191px;
-  }
-   
-  #btnBusca{
-    border:none;
-    
+
+   .alert{
+     width: 80%;
+    margin-left: 10%;
+    margin-top: 10px;
+   }
+
+.table-striped{
+    border: 10px solid #DCDCDC;
+    width: 96%;
     margin-left: 2%;
-    height:32px;
-    border-radius:0 2px 2px 0;
-    width:70px;
-    font-weight:bold;
-    background:#5F9EA0;
-  }
-   
+    height: 500px;
+}
+
+.usuario{
+  margin-left: 10%;
+  position:relative;
+  float: left;
+  width: 40%;
+  min-width: 400px;
+}
+.patrimonio{
+  margin-left: 10%;
+  position:relative;
+  float: left;
+  width: 40%;
+  min-width: 400px;
+}
+
+.cadastrar{
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  left: 50%;
+}
+
+.container-fluid{
+  background-color: black;
+}

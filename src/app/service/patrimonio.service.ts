@@ -13,6 +13,11 @@ export class PatrimonioService {
     let valor = ''+id;
      return this.http.get<Patrimonio>(this.url+"/"+valor, {responseType:"json"});
   }
+
+  getPatrimonioByNumero(numero: string): Observable<Patrimonio> {
+    return this.http.get<Patrimonio>(this.url+"/numero/"+numero, {responseType:"json"});
+  }
+
   save(patrimonio: Patrimonio) {
     let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
     let patrimonioDto = new PatrimonioDto;
