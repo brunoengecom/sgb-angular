@@ -1,5 +1,11 @@
 <app-navegacao></app-navegacao>
 
+<div *ngIf="alertSuccess" class="alert alert-success" role="alert">
+    Emprestimo efetuado com sucesso!!
+</div>
+<div *ngIf="alertDanger" class="alert alert-danger" role="alert">
+    Falha ao fazer emprestimo!
+</div>
 
 <table class="table table-striped">
    <div class="usuario">
@@ -129,6 +135,7 @@
 </div>
 
 </table>
+
 
 <div  class=" cadastrar">
     <button [disabled]="usuario==null || patrimonio==null || emprestimosAtivos > 3 || multas.length > 0" 

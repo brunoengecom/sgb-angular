@@ -9,6 +9,11 @@ import { PatrimonioDto } from '../dto/patrimonio.dto';
   providedIn: 'root'
 })
 export class PatrimonioService {
+  url:string = RESOURCE + "/patrimonio";
+  linesPerPage:number = 8;
+  orderBy:string = "id";
+  direction:string = "DESC";
+  
   getPatrimonio(id: number): Observable<Patrimonio> {
     let valor = ''+id;
      return this.http.get<Patrimonio>(this.url+"/"+valor, {responseType:"json"});
@@ -29,10 +34,7 @@ export class PatrimonioService {
       observe:'response'
     });
   }
-  url:string = RESOURCE + "/patrimonio";
-  linesPerPage:number = 8;
-  orderBy:string = "id";
-  direction:string = "DESC";
+  
   
   getPatrimonios(page: number) {
     let p = ''+page;

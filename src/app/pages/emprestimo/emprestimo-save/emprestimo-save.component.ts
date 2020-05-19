@@ -11,6 +11,7 @@ import { Patrimonio } from 'src/app/model/patrimonio';
 import { PatrimonioService } from 'src/app/service/patrimonio.service';
 import { Observable } from 'rxjs';
 import { error } from '@angular/compiler/src/util';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-emprestimo-save',
@@ -28,13 +29,16 @@ export class EmprestimoSaveComponent implements OnInit {
   profileFormEmprestimo: FormGroup; 
   alertUsuario: Boolean;
   alertPatrimonio: Boolean;
+  alertSuccess: Boolean;
+  alertDanger: Boolean;
   
   constructor(
     private service: EmprestimoService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private patrimonioService:  PatrimonioService
+    private patrimonioService:  PatrimonioService,
+    private http: HttpClient, private emailService :EmailService
   ) { }
 
   
@@ -44,10 +48,23 @@ export class EmprestimoSaveComponent implements OnInit {
     this.criaFormularioEmprestimo();
     
   }
+  
+  mail :Email = new Email();
+
+
+  private enviarEmail() {
+    this.emailService.enviarEmail(this.mail)
+      .subscribe(data => console.log(data));
+  }
+
+  private onSubmit() {
+    this.enviarEmail();
+  }
+
 //usuario e emprestimo
   criaFormularioUsuario(){
     this.profileFormUsuario = this.fb.group({
-      cpf:['821.410.690-76',Validators.compose([Validators.required, Validators.minLength(14),Validators.maxLength(14)])]
+      cpf:['',Validators.compose([Validators.required, Validators.minLength(14),Validators.maxLength(14)])]
     });
   }
 
@@ -66,11 +83,6 @@ export class EmprestimoSaveComponent implements OnInit {
   })
 }
 
-
-  onSubmitEmprestimo(){
-  
-  }
-
   onSubmitCPF(){
     this.usuario = null;
     this.emprestimosAtivos = null;
@@ -88,7 +100,15 @@ export class EmprestimoSaveComponent implements OnInit {
 
   }
 
-
+  onSubmitEmprestimo(){
+    this.alertSuccess=false;
+    this.service.emprestimoSave(this.patrimonio.numero, this.usuario.id).subscribe(data=>{
+      this.alertSuccess=true;
+      console.log(data);
+    },error=>{
+      this.alertDanger=true;
+    })
+  }
 
 
 }

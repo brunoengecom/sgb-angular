@@ -44,7 +44,6 @@ export class LivroCadastrarComponent implements OnInit {
   }
   
   onSubmit(){
-/*
     this.livro = new Livro;
     this.livro.editora = new Editora;
     this.livro.areaDeConhecimento = new AreaDeConhecimento;
@@ -66,7 +65,7 @@ export class LivroCadastrarComponent implements OnInit {
     },
     error=>{
       this.handleError(error)
-    }); */
+    });
     console.log(this.profileForm.value);
     
   }

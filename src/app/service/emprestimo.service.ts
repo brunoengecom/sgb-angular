@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { RESOURCE } from '../utils/API';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../model/usuario';
 import { Observable } from 'rxjs';
 import { Emprestimo } from '../model/emprestimo';
+import { EmprestimoDTO } from '../dto/emprestimo.dto';
+import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,19 @@ export class EmprestimoService {
    return this.http.get(getURL,
    {responseType:"json"});
   }
+
+  emprestimoSave(patrimonio , usuario){
+    let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
+    let emprestimoDTO = new EmprestimoDTO(usuario,patrimonio);
+    console.log(JSON.stringify(emprestimoDTO));
+    return this.http.post(this.url,JSON.stringify(emprestimoDTO),{
+    headers:httpHeaders,
+      observe:'response'
+    });
+    
+  }
+
+  
 
 
   constructor(private http:HttpClient) { }
