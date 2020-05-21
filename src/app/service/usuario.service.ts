@@ -5,6 +5,8 @@ import { Usuario } from '../model/usuario';
 import { Observable } from 'rxjs';
 import { UsuarioDto } from '../dto/usuario.dto';
 import { Validators } from '@angular/forms';
+import { FuncionarioDTO } from '../dto/funcionario.dto';
+import { AlunoDTO } from '../dto/aluno.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +40,26 @@ export class UsuarioService {
       headers:httpHeaders,
       observe:'response'
     });
+  }
+
+  saveFuncionario(usuario:Usuario){
+    let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
+    let funcionarioDTO = new FuncionarioDTO(usuario);
+
+    return this.http.post(this.url,JSON.stringify(usuario),{
+      headers: httpHeaders,
+      observe:'response'
+    })
+  }
+
+  saveAluno(usuario:Usuario){
+    let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
+    let alunoDTO = new AlunoDTO(usuario);
+
+    return this.http.post(this.url,JSON.stringify(usuario),{
+      headers: httpHeaders,
+      observe:'response'
+    })
   }
   
   getUsuarios(page: number) {

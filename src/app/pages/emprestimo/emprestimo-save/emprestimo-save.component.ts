@@ -37,8 +37,7 @@ export class EmprestimoSaveComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private patrimonioService:  PatrimonioService,
-    private http: HttpClient, private emailService :EmailService
+    private patrimonioService:  PatrimonioService
   ) { }
 
   
@@ -47,18 +46,6 @@ export class EmprestimoSaveComponent implements OnInit {
     this.criaFormularioUsuario();
     this.criaFormularioEmprestimo();
     
-  }
-  
-  mail :Email = new Email();
-
-
-  private enviarEmail() {
-    this.emailService.enviarEmail(this.mail)
-      .subscribe(data => console.log(data));
-  }
-
-  private onSubmit() {
-    this.enviarEmail();
   }
 
 //usuario e emprestimo
