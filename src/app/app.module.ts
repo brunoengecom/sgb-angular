@@ -32,6 +32,10 @@ import { RodapeComponent } from './utils/rodape/rodape.component';
 import { UsuarioSaveComponent } from './pages/usuario/usuario-save/usuario-save.component';
 import { ListLivrosComponent } from './pages/area-de-conhecimento/list-livros/list-livros.component';
 import { EmprestimoSaveComponent } from './pages/emprestimo/emprestimo-save/emprestimo-save.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+
 
 @NgModule({
   declarations: [
@@ -61,13 +65,15 @@ import { EmprestimoSaveComponent } from './pages/emprestimo/emprestimo-save/empr
     RodapeComponent,
     UsuarioSaveComponent,
     ListLivrosComponent,
-    EmprestimoSaveComponent
+    EmprestimoSaveComponent,    
   ],
   imports: [
+    NgxMaskModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   providers: [
     {

@@ -46,7 +46,7 @@ export class UsuarioService {
     let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
     let funcionarioDTO = new FuncionarioDTO(usuario);
 
-    return this.http.post(this.url,JSON.stringify(usuario),{
+    return this.http.post(this.url+'/funcionario',JSON.stringify(usuario),{
       headers: httpHeaders,
       observe:'response'
     })
@@ -56,7 +56,7 @@ export class UsuarioService {
     let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
     let alunoDTO = new AlunoDTO(usuario);
 
-    return this.http.post(this.url,JSON.stringify(usuario),{
+    return this.http.post(this.url+'/aluno',JSON.stringify(usuario),{
       headers: httpHeaders,
       observe:'response'
     })

@@ -10,6 +10,7 @@ import { AreaDeConhecimentoService } from 'src/app/service/area-de-conhecimento.
 import { AreaDeConhecimento } from 'src/app/model/Area-de-conhecimento';
 import { LogoutComponent } from '../../logout/logout.component';
 import { log } from 'util';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-livro-cadastrar',
@@ -19,6 +20,7 @@ import { log } from 'util';
 
 
 export class LivroCadastrarComponent implements OnInit {
+  faCoffee = faCoffee;
   livro: Livro;
   profileForm: FormGroup;
   editoras: Array<Editora>=[];
@@ -56,6 +58,7 @@ export class LivroCadastrarComponent implements OnInit {
     this.livro.editora.id = this.profileForm.value.editora;
     this.livro.autores.push(this.profileForm.value.autores);
     this.livro.valor = this.profileForm.value.valor;
+    
     console.log(this.profileForm.value.editora);
     this.service.save(this.livro).subscribe(data=>{
       console.log(data);

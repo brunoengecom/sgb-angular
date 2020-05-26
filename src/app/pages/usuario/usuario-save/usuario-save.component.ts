@@ -3,7 +3,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { min } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Matricula } from 'src/app/model/Matricula';
+import { Turma } from 'src/app/model/turma';
 
 @Component({
   selector: 'app-usuario-save',
@@ -14,6 +18,9 @@ export class UsuarioSaveComponent implements OnInit {
   profileForm: FormGroup;
   //enumRoles: Observable<Array<string>>;
   enumRoles: Array<string>=[];
+  usuario: Usuario;
+  
+  alert: boolean = false;
 
 
   constructor(
@@ -22,7 +29,46 @@ export class UsuarioSaveComponent implements OnInit {
   ) { }
 
   onSubmit(){
+    this.usuario = new Usuario;
+
+    this.usuario.nome = this.profileForm.value.nome;
+    this.usuario.email = this.profileForm.value.email;
+    this.usuario.dataNasc = this.profileForm.value.dataNasc;
+    this.usuario.cpf = this.profileForm.value.cpf;
     
+    if(this.profileForm.value.tipoCadastro==="FUNCIONARIO"){
+      this.usuario.cargo = this.profileForm.value.cargo;
+
+      this.service.saveFuncionario(this.usuario).subscribe(data=>{
+       //this.alert("");
+        
+      },error=>{
+        this.handleError(error)
+      })
+    }else if(this.profileForm.value.tipoCadastro==="ALUNO"){
+      let matricula = new Matricula;
+      let turma = new Turma;
+
+      matricula.numero = this.profileForm.value.matricula;
+      turma.id = this.profileForm.value.id;
+      
+      matricula.turma = turma;
+      this.usuario.matriculas.push(matricula);
+      this.service.saveAluno(this.usuario).subscribe(data=>{
+        console.log("Salvou");
+        
+        //this.alert("");
+      },error=>{
+        console.log("Não salvou");
+        
+        this.handleError(error)
+      })
+    }
+    
+  }
+  handleError(handleError: HttpErrorResponse) {
+    this.alert=true;
+    return throwError(handleError.error.message);
   }
 
   ngOnInit(): void {
@@ -36,14 +82,13 @@ export class UsuarioSaveComponent implements OnInit {
   }
   criaFormulario(){
     this.profileForm = this.fb.group({
-      nome:['', Validators.compose([Validators.required])],
+      nome:['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(40)])],
       email:['', Validators.compose([Validators.required])],
       dataNasc:['', Validators.compose([Validators.required])],
       cpf:['', Validators.compose([Validators.required])],
       tipoCadastro:['',Validators.compose([Validators.required])],
       turma:[''],
       matricula:[''],
-      senha:[''],
       cargo:['']
 
     })

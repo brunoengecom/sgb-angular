@@ -5,7 +5,6 @@ export class FuncionarioDTO{
 	email:String;
 	dataNasc:Date;
 	cpf:String;
-	status:String;
     cargo:String;
     
     constructor(usuario:Usuario){
@@ -13,7 +12,6 @@ export class FuncionarioDTO{
         this.email = usuario.email;
         this.dataNasc = usuario.dataNasc;
         this.cpf = usuario.cpf;
-        this.status = usuario.status;
         this.cargo = usuario.cargo;
     }
 }

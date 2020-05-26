@@ -8,5 +8,5 @@ export class Emprestimo{
     patrimonio : Patrimonio;
     usuario:Usuario;
     multa: Array<Multa>=[];
-
+    
 }

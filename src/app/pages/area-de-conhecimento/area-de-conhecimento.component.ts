@@ -48,8 +48,7 @@ export class AreaDeConhecimentoComponent implements OnInit {
     this.areaConhecimento.nome = this.profileForm.value.nome;
     this.areasDeConhecimento.push(this.areaConhecimento);
     this.service.save(this.areaConhecimento).subscribe(data=>{
-      console.log(data);
-      
+     
         window.location.reload();
       
     },
