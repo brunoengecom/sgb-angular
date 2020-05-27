@@ -19,7 +19,7 @@ export class UsuarioSaveComponent implements OnInit {
   //enumRoles: Observable<Array<string>>;
   enumRoles: Array<string>=[];
   usuario: Usuario;
-  
+  messages: Array<String>=[];
   alert: boolean = false;
 
 
@@ -29,6 +29,8 @@ export class UsuarioSaveComponent implements OnInit {
   ) { }
 
   onSubmit(){
+    this.alert = false;
+    this.messages.pop();
     this.usuario = new Usuario;
 
     this.usuario.nome = this.profileForm.value.nome;
@@ -40,17 +42,20 @@ export class UsuarioSaveComponent implements OnInit {
       this.usuario.cargo = this.profileForm.value.cargo;
 
       this.service.saveFuncionario(this.usuario).subscribe(data=>{
+        console.log("Salvou");
        //this.alert("");
         
       },error=>{
-        this.handleError(error)
+        this.handleError(error);
       })
+
+
     }else if(this.profileForm.value.tipoCadastro==="ALUNO"){
       let matricula = new Matricula;
       let turma = new Turma;
 
       matricula.numero = this.profileForm.value.matricula;
-      turma.id = this.profileForm.value.id;
+      turma.id = this.profileForm.value.turma;
       
       matricula.turma = turma;
       this.usuario.matriculas.push(matricula);
@@ -59,15 +64,21 @@ export class UsuarioSaveComponent implements OnInit {
         
         //this.alert("");
       },error=>{
-        console.log("Não salvou");
+
+        this.handleError(error);
         
-        this.handleError(error)
       })
     }
     
   }
   handleError(handleError: HttpErrorResponse) {
     this.alert=true;
+    //this.message = handleError.error.errors;
+    console.log(handleError);
+    
+    handleError.error.errors.forEach(e => {
+      this.messages.push("* "+e.field+": "+e.defaultMessage+"");
+    });
     return throwError(handleError.error.message);
   }
 

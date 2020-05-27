@@ -6,6 +6,12 @@
     <div class="container" [formGroup]="profileForm">
     <h1>Cadastro de Usuário</h1>
     <hr>
+    <div *ngIf="alert" class="alert alert-danger" role="alert">
+        <div *ngFor=" let message of messages">
+            <p> {{message}}</p>
+        </div>
+       
+    </div>
  
     <label for="fname">Nome:</label>
     <input type="text" formControlName="nome" id="nome" name="nome" placeholder="Entre com o nome:">
