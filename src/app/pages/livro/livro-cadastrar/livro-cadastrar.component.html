@@ -6,6 +6,12 @@
     <div class="container" [formGroup]="profileForm">
     <h1>Cadastro de Livro</h1>
     <hr>
+    <div *ngIf="alert" class="alert alert-danger" role="alert">
+        <div *ngFor=" let message of messages">
+            <p> {{message}}</p>
+        </div>
+       
+    </div>
  
     <label for="fname">Nome:</label>
     <input type="text"  name="Nome" 
@@ -45,25 +51,39 @@
     <input type="text"  name="valor" 
     class="form-control" formControlName="valor" placeholder="Insira o valor:">
 
-    
         
     <label for="lname">Autores:</label>   
    
-    <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-  </div>
-</div>
+    <div class="input-group mb-3 ">
+
+        <input type="text" formControlName = "autores" name=""/>
+        
+        <!-- Add button -->
+        <button type="button" (click)="addAutor()">Adicionar Autor</button>
+
+    </div>
+    <span >
+        {{messageAddAutor}}
+    </span><br>
+    <div *ngIf="autores.length">
+        <table>
+            <tbody>
+                <tr *ngFor="let autor of autores;let i= index">
+                    <th > {{autor}}</th>
+                    <th><button type="button" (click)="removerAutor(i)">X</button></th>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+
     
     
-    <button  (click)="onSubmit()" href="#" class="btn btn-success mb-4" value="Cadastrar">Salvar</button>
+    
+    
+    <button   (click)="onSubmit()" href="#" class="btn btn-success mb-4" value="Cadastrar">Salvar</button>
     <button routerLink="/livro" class="btn btn-danger mx-sm-3 mb-4" value="Cadastrar">Voltar</button>
     
 </div>
 </table>
-  
-<div class="input-group">
-    <fa-icon [icon]="faCoffee"></fa-icon>
-    <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
-</div>
+ 

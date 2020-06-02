@@ -17,7 +17,7 @@ import { log } from 'util';
   styleUrls: ['./livro-edit.component.css']
 })
 export class LivroEditComponent implements OnInit {
-
+  editForm: FormGroup;
   livro:Livro=new Livro;
   profileForm: FormGroup;
   alert: boolean;  
@@ -27,12 +27,15 @@ export class LivroEditComponent implements OnInit {
   isbn: string;
   editora: Editora;
   areaDeConhecimento: AreaDeConhecimento;
-  autores: string[];
+  autores: Array<string>=[];
   nome: string;
   editoras: Array<Editora>=[];
   areasDeConhecimento: Array<AreaDeConhecimento>=[];
+  editedItem: Livro;
+  messageAddAutor: String;
 
   constructor(
+    formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private service: LivroService,
@@ -60,13 +63,22 @@ export class LivroEditComponent implements OnInit {
       });
   }
   onSubmit(){
+    let id = this.livro.id;
     this.livro = new Livro;
-    this.livro.nome = this.nome;
-    this.livro.edicao = this.edicao;
-    this.livro.ano = this.ano;
-    this.livro.isbn = this.isbn;
-    this.livro.editora.nome = this.editora.nome;
+    this.livro.id = id;
+    this.livro.editora = new Editora;
+    this.livro.areaDeConhecimento = new AreaDeConhecimento;
+    this.livro.nome = this.profileForm.value.nome;
+    this.livro.edicao = this.profileForm.value.edicao;
+    this.livro.ano = this.profileForm.value.ano;
+    this.livro.isbn = this.profileForm.value.isbn;
+    this.livro.areaDeConhecimento.id = this.profileForm.value.areaDeConhecimento;
+    this.livro.editora.id = this.profileForm.value.editora;
+    console.log(this.profileForm.value.editora);
+    
     this.livro.autores = this.autores;
+    this.livro.valor = this.profileForm.value.valor;
+    
     this.alert = null;
 
     this.service.edit(this.livro).subscribe(data=>{
@@ -81,12 +93,13 @@ export class LivroEditComponent implements OnInit {
 
 } 
   preenchaCampos(livro:Livro){
-    this.profileForm.controls.edicao.setValue(this.livro.edicao);
-    this.profileForm.controls.ano.setValue(this.livro.ano);
-    this.profileForm.controls.isbn.setValue(this.livro.isbn);
-    this.profileForm.controls.areaDeConhecimento.setValue(this.livro.areaDeConhecimento.id);
-    this.profileForm.controls.editora.setValue(this.livro.editora.id);
-    this.profileForm.controls.autores.setValue(this.livro.autores);
+    this.profileForm.controls.nome.setValue(livro.nome);
+    this.profileForm.controls.edicao.setValue(livro.edicao);
+    this.profileForm.controls.ano.setValue(livro.ano);
+    this.profileForm.controls.isbn.setValue(livro.isbn);
+    this.profileForm.controls.areaDeConhecimento.setValue(livro.areaDeConhecimento.id);
+    this.profileForm.controls.editora.setValue(livro.editora.id);
+    this.autores = livro.autores;
     
   }
 
@@ -99,13 +112,39 @@ export class LivroEditComponent implements OnInit {
 //}
 criaFormulario(){
   this.profileForm = this.fb.group({
-    edicao:['', Validators.compose([Validators.required])],
-    ano:['', Validators.compose([Validators.required])],
-    isbn:['', Validators.compose([Validators.required])],
-    areaDeConhecimento:['', Validators.compose([Validators.required])],
-    editora:['', Validators.compose([Validators.required])],
-    autores:['', Validators.compose([Validators.required])]
+    nome:['', Validators.compose([])],
+    edicao:['', Validators.compose([])],
+    ano:['', Validators.compose([])],
+    isbn:['', Validators.compose([])],
+    areaDeConhecimento:['', Validators.compose([])],
+    editora:['', Validators.compose([])],
+    autores:['', Validators.compose([])]
   });
   }
 
+  onUpdateDetails(){
+
+    // Updating form value
+    this.profileForm.patchValue({
+        'nome': this.editedItem.nome,
+        
+        
+    });
+    this.editForm.updateValueAndValidity();
+  }
+
+  addAutor() {
+    this.messageAddAutor="";
+    if(this.profileForm.value.autores.length >2){
+      this.autores.push(this.profileForm.value.autores);
+      this.profileForm.value.autores="";
+    }else{
+      this.messageAddAutor = "O nome do Autor deve conter no mínimo 2 caracteres!"
+    }   
+  }
+  
+  removerAutor(index){
+    this.autores.splice(index,1);
+  }
 }
+

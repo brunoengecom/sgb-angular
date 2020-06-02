@@ -7,6 +7,12 @@ h1{
     margin-left: 10%;
     border: 1px solid #DCDCDC;
   }
+  
+  .paginacao{
+    width:50%;
+    margin-top: 10px;
+    margin-left: 25%;
+  }
   .botaoAreaDeConhecimento{
     margin-left: 10%;
   }
@@ -31,8 +37,4 @@ h1{
     padding: 20px;
   }
   
-  table{
-  border: 1px solid #DCDCDC;
-  margin-left: 10%;
-  width: 40%;
-  }
+  

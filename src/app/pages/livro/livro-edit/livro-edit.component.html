@@ -1,24 +1,26 @@
 <app-navegacao></app-navegacao>
 
-
 <table class="table table-striped">
-    <div class="container" [formGroup]="profileForm">
+  <div class="container" [formGroup]="profileForm">
       <h1>Edição de Livro</h1>
       <hr>
 
+      
+      <label for="fname">Nome:</label>
+      <input formControlName="nome" type="text" class="form-control"  >
+
       <label for="fname">Edição:</label>
-      <p></p>
-      <input formControlName="edicao" required type="text" class="fname" name="Edição" placeholder="Edição">
+      <input formControlName="edicao" type="text" class="lname" name="Edição" >
   
       <label for="lname">Ano:</label>
-      <input formControlName="ano" type="text" class="lname" name="Ano" placeholder="Ano">
+      <input formControlName="ano" type="text" class="lname" name="Ano">
   
       <label for="lname">Isbn:</label>
-      <input formControlName="isbn" type="text" class="lname" name="Isbn" placeholder="ISBN">
+      <input formControlName="isbn" type="text" class="lname" name="Isbn">
   
       <label for="fname">Áreas de Conhecimento:</label>    
       <select placeholder="Áreas de Conhecimento" type="text" id="fname" name="areaDeConhecimento" 
-      class="form-control" formControlName="areaDeConhecimento">  
+      class="form-control"  formControlName="areaDeConhecimento" >  
     
           <option></option>
           <option value="{{ar.id}}" *ngFor="let ar of areasDeConhecimento">{{ar.nome}}</option>
@@ -27,17 +29,38 @@
   
       <label for="lname">Editora:</label>
       <select placeholder="Editora" class="lname" type="text"  name="Editora" 
-      class="form-control" formControlName="editora">  
-   
+      class="form-control" formControlName="editora">     
         <option></option>
-        <option value="{{ed.id}}" *ngFor="let ed of editoras">{{ed.nome}}</option>
-        
-    </select>
-      <label for="lname">Autores:</label>
-      <input formControlName="autores" type="text" id="lname" name="Autores" placeholder="{{livro.autores}}">
+        <option value="{{ed.id}}" *ngFor="let ed of editoras">{{ed.nome}}</option>        
+      </select>
+
+      
+      <label for="lname">Autores:</label>   
+   
+    <div class="input-group mb-3 ">
+
+      <input type="text" formControlName = "autores" name=""/>
+        <!-- Add button -->
+        <button type="button" (click)="addAutor()">Adicionar Autor</button>
+
+    </div>
+    <span >
+        {{messageAddAutor}}
+    </span><br>
+    <div *ngIf="autores.length">
+        <table>
+            <tbody>
+                <tr *ngFor="let autor of autores;let i= index">
+                    <th > {{autor}}</th>
+                    <th><button type="button" (click)="removerAutor(i)">X</button></th>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
   
       
-      <button [disabled]="!profileForm.valid" (click)="onSubmit()" href="#" class="btn btn-success mb-4" value="Cadastrar">Salvar</button>
+      <button  (click)="onSubmit()" href="#" class="btn btn-success mb-4" value="Cadastrar">Salvar</button>
       <button routerLink="/livro" class="btn btn-danger mx-sm-3 mb-4" value="Cadastrar">Voltar</button>
       
        

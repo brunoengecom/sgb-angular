@@ -6,6 +6,12 @@
     <div class="container" [formGroup]="profileForm">
     <h1>Cadastro de Editora</h1>
     <hr>
+    <div *ngIf="alert" class="alert alert-danger" role="alert">
+      <div *ngFor=" let message of messages">
+          <p> {{message}}</p>
+      </div>
+     
+  </div>
  
     <label for="fname">Nome:</label>
     <input type="text" id="fname" name="Nome" 
@@ -20,3 +26,51 @@
     
 </div>
 </table>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            
+            <th></th>
+            <th>
+                <h1>Lista de Editoras</h1>
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        
+        <tr>
+            
+            <th scope="row">Nome:</th> 
+            <th scope="row">Cnpj:</th>
+            <th></th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let editora of editoras">
+            <th scope="row">{{editora.nome}}</th>    
+            <td scope="row">{{editora.cnpj}}</td>    
+            <td><a class="btn btn-info ">Listar Livros</a></td>      
+            <td><a routerLink="/editora/{{editora.id}}" class="btn btn-warning ">Editar</a></td>
+    
+          </tr>
+    </tbody>
+</table>
+<div class="container-fluid paginacao">
+    <table class="table table-sm">
+      <tbody>
+        <tr>
+
+          
+          
+          <td><button [disabled]="page==0" routerLink="/patrimonio/page/{{page-1}}" class="btn btn-outline-primary">Anterior</button></td>
+          <td><button class="btn btn-outline-primary">{{page+1}}</button></td>
+          <td><button [disabled]="page +1 >= totalPages" class="btn btn-outline-primary" routerLink="/patrimonio/page/{{page+1}}">{{page+2}}</button></td>
+          <td><button [disabled]="page +2 >= totalPages" class="btn btn-outline-primary" routerLink="/patrimonio/page/{{page+2}}">{{page+3}}</button></td>
+          <td><button [disabled]="page +1 >= totalPages" class="btn btn-outline-primary" routerLink="/patrimonio/page/{{page+1}}">Próxima</button></td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>

@@ -30,7 +30,7 @@ export class UsuarioSaveComponent implements OnInit {
 
   onSubmit(){
     this.alert = false;
-    this.messages.pop();
+    this.messages =[];
     this.usuario = new Usuario;
 
     this.usuario.nome = this.profileForm.value.nome;

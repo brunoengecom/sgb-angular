@@ -16,9 +16,13 @@ export class LivroService {
   edit(livro: Livro) {
     let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
     let livroDto = new LivroDto(livro);
+    console.log(JSON.stringify(livroDto));
     return this.http.put(this.url+"/"+livro.id,JSON.stringify(livroDto),{
+      
+      
       headers:httpHeaders,
-      observe:'response'
+      observe:'response',
+      
     });
   }
 

@@ -51,7 +51,7 @@ export class EmprestimoSaveComponent implements OnInit {
 //usuario e emprestimo
   criaFormularioUsuario(){
     this.profileFormUsuario = this.fb.group({
-      cpf:['',Validators.compose([Validators.required, Validators.minLength(14),Validators.maxLength(14)])]
+      cpf:['',Validators.compose([Validators.required])]
     });
   }
 

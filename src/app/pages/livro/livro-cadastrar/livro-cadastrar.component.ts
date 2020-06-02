@@ -11,6 +11,7 @@ import { AreaDeConhecimento } from 'src/app/model/Area-de-conhecimento';
 import { LogoutComponent } from '../../logout/logout.component';
 import { log } from 'util';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-livro-cadastrar',
@@ -25,7 +26,11 @@ export class LivroCadastrarComponent implements OnInit {
   profileForm: FormGroup;
   editoras: Array<Editora>=[];
   areasDeConhecimento: Array<AreaDeConhecimento>=[];
-  public autores: Array<string>=[""];
+  autores: Array<string>=[];
+  alert: boolean;
+  messages: any;
+  messageAddAutor: String;
+
 
   constructor(
     private fb: FormBuilder,
@@ -49,14 +54,13 @@ export class LivroCadastrarComponent implements OnInit {
     this.livro = new Livro;
     this.livro.editora = new Editora;
     this.livro.areaDeConhecimento = new AreaDeConhecimento;
-
     this.livro.nome = this.profileForm.value.nome;
     this.livro.edicao = this.profileForm.value.edicao;
     this.livro.ano = this.profileForm.value.ano;
     this.livro.isbn = this.profileForm.value.isbn;
     this.livro.areaDeConhecimento.id = this.profileForm.value.areaDeConhecimento;
     this.livro.editora.id = this.profileForm.value.editora;
-    this.livro.autores.push(this.profileForm.value.autores);
+    this.livro.autores = this.autores;
     this.livro.valor = this.profileForm.value.valor;
     
     console.log(this.profileForm.value.editora);
@@ -72,8 +76,15 @@ export class LivroCadastrarComponent implements OnInit {
     console.log(this.profileForm.value);
     
   }
-  handleError(error: HttpErrorResponse) {
-    throw new Error("Method not implemented.");
+  handleError(handleError: HttpErrorResponse) {
+    this.alert=true;
+    //this.message = handleError.error.errors;
+    console.log(handleError);
+    
+    handleError.error.errors.forEach(e => {
+      this.messages.push("* "+e.field+": "+e.defaultMessage+"");
+    });
+    return throwError(handleError.error.message);
   }
   criaFormulario(){
     this.profileForm = this.fb.group({
@@ -90,7 +101,17 @@ export class LivroCadastrarComponent implements OnInit {
   }
 
   addAutor() {
-    this.autores.push("");
+    this.messageAddAutor="";
+    if(this.profileForm.value.autores.length >2){
+      this.autores.push(this.profileForm.value.autores);
+      this.profileForm.value.autores="";
+    }else{
+      this.messageAddAutor = "O nome do Autor deve conter no mínimo 2 caracteres!"
+    }   
+  }
+
+  removerAutor(index){
+    this.autores.splice(index,1);
   }
 
 }
