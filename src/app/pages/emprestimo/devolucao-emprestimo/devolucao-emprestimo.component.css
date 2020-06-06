@@ -1,0 +1,41 @@
+
+   .alert{
+    width: 80%;
+   margin-left: 10%;
+   margin-top: 10px;
+  }
+
+.table-striped{
+   border: 10px solid #DCDCDC;
+   width: 96%;
+   margin-left: 2%;
+   height: 500px;
+}
+
+.usuario{
+ margin-left: 10%;
+ position:relative;
+ float: left;
+ width: 40%;
+ min-width: 400px;
+}
+.patrimonio{
+ margin-left: 10%;
+ position:relative;
+ float: left;
+ width: 40%;
+ min-width: 400px;
+}
+
+.cadastrar{
+ align-items: center;
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ justify-content: center;
+ left: 50%;
+}
+
+.container-fluid{
+ background-color: black;
+}

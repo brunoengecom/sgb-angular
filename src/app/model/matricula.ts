@@ -1,6 +1,6 @@
 import { Turma } from './turma';
 
 export class Matricula{
-    numero: number;
+    numero: String;
     turma: Turma;
 }

@@ -7,6 +7,8 @@
     Falha ao fazer emprestimo!
 </div>
 
+
+
 <table class="table table-striped">
    <div class="usuario">
     <div [formGroup]="profileFormUsuario" >
@@ -135,13 +137,18 @@
         </tbody>
         
 </div>
+<span *ngIf="validaPatrimonio" class="alert alert-danger" role="alert">
+    Patrimônio já emprestado!
+</span>
 </div>
+
 
 </table>
 
 
+
 <div  class=" cadastrar">
-    <button [disabled]="usuario==null || patrimonio==null || emprestimosAtivos > 3 || multas.length > 0" 
+    <button [disabled]="validaPatrimonio || usuario==null || patrimonio==null || emprestimosAtivos > 3 || multas.length > 0" 
         (click)="onSubmitEmprestimo()" 
     type="submit" class="btn btn-primary ">Cadastrar Emprestimo</button>
 </div>

@@ -24,6 +24,7 @@ import { PatrimonioSaveComponent } from './pages/patrimonio/patrimonio-save/patr
 import { UsuarioSaveComponent } from './pages/usuario/usuario-save/usuario-save.component';
 import { ListLivrosComponent } from './pages/area-de-conhecimento/list-livros/list-livros.component';
 import { EmprestimoSaveComponent } from './pages/emprestimo/emprestimo-save/emprestimo-save.component';
+import { DevolucaoEmprestimoComponent } from './pages/emprestimo/devolucao-emprestimo/devolucao-emprestimo.component';
 
 
 const routes:Routes=[
@@ -41,6 +42,7 @@ const routes:Routes=[
   {path: 'usuario/save', component: UsuarioSaveComponent},
   {path: 'usuario/:id', component: UsuarioDetalhesComponent},
   {path: 'usuario', component: UsuarioComponent},
+  {path: 'devolucao-emprestimo', component: DevolucaoEmprestimoComponent},
   {path:'emprestimo/save',component: EmprestimoSaveComponent},
   {path:'emprestimo',component: EmprestimoComponent},
   {path:'livro/:id/area-de-conhecimento', component: ListLivrosComponent},

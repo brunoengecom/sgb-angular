@@ -20,7 +20,8 @@ export class UsuarioSaveComponent implements OnInit {
   enumRoles: Array<string>=[];
   usuario: Usuario;
   messages: Array<String>=[];
-  alert: boolean = false;
+  alertDanger: boolean = false;
+  alertSucess: boolean = false;
 
 
   constructor(
@@ -29,7 +30,8 @@ export class UsuarioSaveComponent implements OnInit {
   ) { }
 
   onSubmit(){
-    this.alert = false;
+    this.alertDanger = false;
+    this.alertSucess = false;
     this.messages =[];
     this.usuario = new Usuario;
 
@@ -42,8 +44,11 @@ export class UsuarioSaveComponent implements OnInit {
       this.usuario.cargo = this.profileForm.value.cargo;
 
       this.service.saveFuncionario(this.usuario).subscribe(data=>{
-        console.log("Salvou");
-       //this.alert("");
+        this.criaFormulario();
+        this.alertDanger = false;
+        this.alertSucess = true;
+        this.messages = [];
+        this.messages.push("Salvo com sucesso!");
         
       },error=>{
         this.handleError(error);
@@ -60,20 +65,23 @@ export class UsuarioSaveComponent implements OnInit {
       matricula.turma = turma;
       this.usuario.matriculas.push(matricula);
       this.service.saveAluno(this.usuario).subscribe(data=>{
-        console.log("Salvou");
-        
-        //this.alert("");
+        this.criaFormulario();
+        this.alertDanger = false;
+        this.alertSucess= true;
+        this.messages=[];
+        this.messages.push("Salvo com sucesso!");
+
       },error=>{
 
-        this.handleError(error);
-        
+        this.handleError(error);        
       })
     }
     
   }
   handleError(handleError: HttpErrorResponse) {
-    this.alert=true;
-    //this.message = handleError.error.errors;
+    this.alertDanger=true;
+    this.alertSucess=false;
+    this.messages=[];
     console.log(handleError);
     
     handleError.error.errors.forEach(e => {
@@ -104,4 +112,5 @@ export class UsuarioSaveComponent implements OnInit {
 
     })
   }
+  
 }   

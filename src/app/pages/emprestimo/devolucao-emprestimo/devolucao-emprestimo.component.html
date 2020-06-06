@@ -1,0 +1,81 @@
+<app-navegacao></app-navegacao>
+
+<!--
+<div *ngIf="alertSuccess" class="alert alert-success" role="alert">
+    Devolução efetuada com sucesso!!
+</div>
+-->
+
+<table class="table table-striped">
+    
+    <div [formGroup]="profileFormEmprestimo" >
+        <div class="form-row align-items-center">
+            <div class="col-auto my-1">
+              <label class="sr-only" for="inlineFormInputGroupUsername">Patrimônio:</label>
+              <div class="input-group">                
+                <input type="text" id="txtBusca" class="form-control" placeholder="Insira o Patrimônio" 
+                    formControlName="patrimonio">
+                </div>
+            </div>
+            
+            <div class="col-sm-5 my-1">
+              <button [disabled]="!profileFormEmprestimo.valid" (click)="onSubmitPatrimonio()" 
+              type="submit" class="btn btn-primary">Buscar Patrimônio</button>
+            </div>
+            <div *ngIf="alertPatrimonio" class="alert alert-danger" role="alert">
+                Patrimônio Não Encontrado!
+            </div>
+            
+        </div>
+    
+
+    <!------------------------------------------------------------------------------------------->
+    <tbody>
+        <h3>Dados do Livro</h3>
+        <tr>
+            <th scope="row">Nome:</th> 
+            <td>{{emprestimo.patrimonio.livro.nome}}</td>
+        </tr>
+        
+        <tr>
+            <th scope="row">Area de Conhecimento:</th> 
+            <td>{{emprestimo.patrimonio.livro.areaDeConhecimento.nome}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Editora:</th> 
+            <td>{{emprestimo.patrimonio.livro.editora.nome}}</td>
+        </tr>     
+            
+        
+
+        <h3>Dados do Usuário</h3>
+        <tr>
+            <th scope="row">Nome:</th> 
+            <td>{{emprestimo.usuario.nome}}</td>
+        </tr>
+        <tr>
+            <th scope="row">CPF:</th> 
+            <td>{{emprestimo.usuario.cpf}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Cargo:</th> 
+            <td>{{emprestimo.usuario.cargo}}</td>
+        </tr>
+
+        <h3>Dados do Emprestimo</h3>
+        <tr>
+            <th scope="row">Aquisição:</th> 
+            <td>{{emprestimo.aquisicao}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Data de Devolução:</th> 
+            <td>{{emprestimo.prazoEmprestimo.prazo}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Aquisição:</th> 
+            <td>{{emprestimo.aquisicao}}</td>
+        </tr>
+    </tbody>
+</div>
+</table>
+

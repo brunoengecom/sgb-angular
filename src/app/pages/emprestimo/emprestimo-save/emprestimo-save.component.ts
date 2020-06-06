@@ -31,6 +31,7 @@ export class EmprestimoSaveComponent implements OnInit {
   alertPatrimonio: Boolean;
   alertSuccess: Boolean;
   alertDanger: Boolean;
+  validaPatrimonio: boolean;
   
   constructor(
     private service: EmprestimoService,
@@ -62,6 +63,13 @@ export class EmprestimoSaveComponent implements OnInit {
   }
   onSubmitPatrimonio(){
     this.alertPatrimonio = false;
+    this.service.validarPatrimonio(this.profileFormEmprestimo.value.patrimonio).subscribe(data=>{
+      
+    },error=>{
+      this.validaPatrimonio = true;
+    });
+
+
     this.patrimonioService.getPatrimonioByNumero(this.profileFormEmprestimo.value.patrimonio).subscribe(data=>{
       this.patrimonio=data;
       
@@ -89,6 +97,7 @@ export class EmprestimoSaveComponent implements OnInit {
 
   onSubmitEmprestimo(){
     this.alertSuccess=false;
+    this.alertDanger = false;
     this.service.emprestimoSave(this.patrimonio.numero, this.usuario.id).subscribe(data=>{
       this.alertSuccess=true;
       console.log(data);

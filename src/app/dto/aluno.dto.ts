@@ -6,7 +6,7 @@ export class AlunoDTO{
 	cpf:String;
 	email:String;
 	turma:number;
-    matricula:number;
+    matricula:String;
     
     constructor(usuario:Usuario){
         this.nome = usuario.nome;

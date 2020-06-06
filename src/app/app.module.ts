@@ -34,6 +34,7 @@ import { ListLivrosComponent } from './pages/area-de-conhecimento/list-livros/li
 import { EmprestimoSaveComponent } from './pages/emprestimo/emprestimo-save/emprestimo-save.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { DevolucaoEmprestimoComponent } from './pages/emprestimo/devolucao-emprestimo/devolucao-emprestimo.component';
 
 
 
@@ -65,7 +66,8 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
     RodapeComponent,
     UsuarioSaveComponent,
     ListLivrosComponent,
-    EmprestimoSaveComponent,    
+    EmprestimoSaveComponent,
+    DevolucaoEmprestimoComponent,    
   ],
   imports: [
     NgxMaskModule.forRoot(),

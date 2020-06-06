@@ -1,5 +1,8 @@
 <app-navegacao></app-navegacao>
 
+
+  
+
 <table class="table table-striped" >
     <thead>
       <th scope="row">Nome:</th>
@@ -8,6 +11,7 @@
       <th></th>
     </thead>
     <tbody>
+      
       <tr *ngFor="let livro of livros">
         <th scope="row">{{livro.nome}}</th>
 
@@ -19,8 +23,12 @@
       </tr>
       
     </tbody>
+    
   </table>
-
+  <div class="container">
+    <span *ngIf="livros.length==0">Não existe livro cadastrado para esta área de Conhecimento!</span>
+  </div>
+  
   <div class="container-fluid paginacao">
     <table class="table table-sm">
       <tbody>

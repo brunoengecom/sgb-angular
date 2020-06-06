@@ -6,7 +6,13 @@
     <div class="container" [formGroup]="profileForm">
     <h1>Cadastro de Usuário</h1>
     <hr>
-    <div *ngIf="alert" class="alert alert-danger" role="alert">
+    <div *ngIf="alertDanger" class="alert alert-danger" role="alert">
+        <div *ngFor=" let message of messages">
+            <p> {{message}}</p>
+        </div>
+       
+    </div>
+    <div *ngIf="alertSucess" class="alert alert-success" role="alert">
         <div *ngFor=" let message of messages">
             <p> {{message}}</p>
         </div>

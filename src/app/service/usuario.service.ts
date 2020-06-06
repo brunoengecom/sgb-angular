@@ -55,7 +55,8 @@ export class UsuarioService {
   saveAluno(usuario:Usuario){
     let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
     let alunoDTO = new AlunoDTO(usuario);
-
+    console.log(JSON.stringify(alunoDTO));
+    
     return this.http.post(this.url+'/aluno',JSON.stringify(alunoDTO),{
       headers: httpHeaders,
       observe:'response'

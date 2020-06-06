@@ -11,7 +11,7 @@ import { stringify } from 'querystring';
   providedIn: 'root'
 })
 export class EmprestimoService {
-  
+   
   url:string = RESOURCE + "/emprestimo";
   linesPerPage:string = "10";
   orderBy:string = "id";
@@ -31,6 +31,10 @@ export class EmprestimoService {
    {responseType:"json"});
   }
 
+  getEmprestimoAtivoByPatrimonio(patrimonio:String):Observable<Emprestimo>{
+   return this.http.get<Emprestimo>(this.url+"/ativo/"+patrimonio);
+  }
+
   emprestimoSave(patrimonio , usuario){
     let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
     let emprestimoDTO = new EmprestimoDTO(usuario,patrimonio);
@@ -40,6 +44,10 @@ export class EmprestimoService {
       observe:'response'
     });
     
+  }
+
+  validarPatrimonio(patrimonio: string) {
+    return this.http.get(this.url+"/validaLivro/"+patrimonio);
   }
 
   
