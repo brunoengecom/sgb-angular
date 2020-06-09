@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Emprestimo } from 'src/app/model/emprestimo';
+import { Multa } from 'src/app/model/multa';
 
 @Component({
   selector: 'app-devolucao-emprestimo',
@@ -16,6 +17,11 @@ export class DevolucaoEmprestimoComponent implements OnInit {
   validaPatrimonio: boolean;
   profileFormEmprestimo: FormGroup;
   emprestimo: Emprestimo;
+  multas: Array<Multa>=[];
+  alertSuccess: Boolean;
+  alertDanger: Boolean;
+  patrimonio: any;
+  usuario: any;
 
   constructor(
     private service: EmprestimoService,
@@ -35,8 +41,9 @@ export class DevolucaoEmprestimoComponent implements OnInit {
   }
 
   onSubmitPatrimonio(){
-    this.alertPatrimonio = false;
-    
+    this.alertSuccess=false;
+    this.alertDanger = false;
+    this.alertPatrimonio = false;    
     this.service.getEmprestimoAtivoByPatrimonio(this.profileFormEmprestimo.value.patrimonio).subscribe(data=>{
       this.emprestimo = data;
       console.log(data);
@@ -46,6 +53,18 @@ export class DevolucaoEmprestimoComponent implements OnInit {
       this.alertPatrimonio=true;
       console.log(error);
       
+  })
+}
+onSubmitEmprestimo(){
+  this.alertSuccess=false;
+  this.alertDanger = false;
+  this.service.devolucaoSave(this.patrimonio).subscribe(data=>{
+    this.alertSuccess=true;
+    console.log(data);
+  },error=>{
+    this.alertDanger=true;
+    console.log(error);
+    
   })
 }
 }

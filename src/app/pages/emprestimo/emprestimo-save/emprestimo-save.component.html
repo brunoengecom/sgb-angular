@@ -60,6 +60,10 @@
                 <th scope="row">Cargo:</th> 
                 <td>{{usuario.cargo}}</td>
             </tr>
+            <tr *ngIf="usuario.roles.indexOf('ALUNO')>-1 ">
+                <th scope="row">Descrição:</th> 
+                <td>{{usuario.roles}}</td>
+            </tr>
             
             <tr>
                 <th scope="row">Emprestimos Ativos:</th> 
@@ -110,6 +114,7 @@
         <h1>Dados do Livro</h1>
         
         <tbody>
+            
             <tr>
                 <th scope="row">Nome:</th> 
                 <td>{{patrimonio.livro.nome}}</td>

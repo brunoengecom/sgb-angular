@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Emprestimo } from '../model/emprestimo';
 import { EmprestimoDTO } from '../dto/emprestimo.dto';
 import { stringify } from 'querystring';
+import { DevolucaoDTO } from '../dto/devolucao.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,17 @@ export class EmprestimoService {
     let emprestimoDTO = new EmprestimoDTO(usuario,patrimonio);
     console.log(JSON.stringify(emprestimoDTO));
     return this.http.post(this.url,JSON.stringify(emprestimoDTO),{
+    headers:httpHeaders,
+      observe:'response'
+    });
+    
+  }
+
+  devolucaoSave(patrimonio){
+    let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
+    let devolucaoDTO = new DevolucaoDTO(patrimonio);
+    
+    return this.http.post(this.url,JSON.stringify(devolucaoDTO),{
     headers:httpHeaders,
       observe:'response'
     });

@@ -7,19 +7,19 @@
 
 .table-striped{
    border: 10px solid #DCDCDC;
-   width: 96%;
-   margin-left: 2%;
+   width: 70%;
+   margin-left: 15%;
    height: 500px;
 }
 
-.usuario{
+.emprestimo{
  margin-left: 10%;
  position:relative;
  float: left;
  width: 40%;
  min-width: 400px;
 }
-.patrimonio{
+.usuario{
  margin-left: 10%;
  position:relative;
  float: left;

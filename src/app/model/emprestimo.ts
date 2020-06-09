@@ -12,4 +12,5 @@ export class Emprestimo{
     bibliotecarioDevolucao:Usuario;
     prazoEmprestimo: PrazoEmprestimo;
     aquisicao: Date;
+    diaDevolucao: Date;
 }

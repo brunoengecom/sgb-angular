@@ -103,6 +103,8 @@ export class EmprestimoSaveComponent implements OnInit {
       console.log(data);
     },error=>{
       this.alertDanger=true;
+      console.log(error);
+      
     })
   }
 

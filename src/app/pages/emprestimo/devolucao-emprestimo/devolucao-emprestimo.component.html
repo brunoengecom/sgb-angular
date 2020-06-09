@@ -1,10 +1,11 @@
 <app-navegacao></app-navegacao>
 
-<!--
 <div *ngIf="alertSuccess" class="alert alert-success" role="alert">
     Devolução efetuada com sucesso!!
 </div>
--->
+<div *ngIf="alertDanger" class="alert alert-danger" role="alert">
+    Falha ao fazer Devolução!
+</div>
 
 <table class="table table-striped">
     
@@ -23,7 +24,7 @@
               type="submit" class="btn btn-primary">Buscar Patrimônio</button>
             </div>
             <div *ngIf="alertPatrimonio" class="alert alert-danger" role="alert">
-                Patrimônio Não Encontrado!
+                Patrimônio Não Encontrado ou Não está emprestado!
             </div>
             
         </div>
@@ -31,51 +32,55 @@
 
     <!------------------------------------------------------------------------------------------->
     <tbody>
-        <h3>Dados do Livro</h3>
-        <tr>
-            <th scope="row">Nome:</th> 
-            <td>{{emprestimo.patrimonio.livro.nome}}</td>
-        </tr>
-        
-        <tr>
-            <th scope="row">Area de Conhecimento:</th> 
-            <td>{{emprestimo.patrimonio.livro.areaDeConhecimento.nome}}</td>
-        </tr>
-        <tr>
-            <th scope="row">Editora:</th> 
-            <td>{{emprestimo.patrimonio.livro.editora.nome}}</td>
-        </tr>     
+       <div class="emprestimo" *ngIf="emprestimo">
+            <h3>Dados do Livro</h3>
+            <tr>
+                <th scope="row">Nome:</th> 
+                <td>{{emprestimo.patrimonio.livro.nome}}</td>
+            </tr>
+            
+            <tr>
+                <th scope="row">Area de Conhecimento:</th> 
+                <td>{{emprestimo.patrimonio.livro.areaDeConhecimento.nome}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Editora:</th> 
+                <td>{{emprestimo.patrimonio.livro.editora.nome}}</td>
+            </tr>     
             
         
-
+         </div>
+         <div class="usuario" *ngIf="emprestimo" >
         <h3>Dados do Usuário</h3>
-        <tr>
-            <th scope="row">Nome:</th> 
-            <td>{{emprestimo.usuario.nome}}</td>
-        </tr>
-        <tr>
-            <th scope="row">CPF:</th> 
-            <td>{{emprestimo.usuario.cpf}}</td>
-        </tr>
-        <tr>
-            <th scope="row">Cargo:</th> 
-            <td>{{emprestimo.usuario.cargo}}</td>
-        </tr>
+            <tr>
+                <th scope="row">Nome:</th> 
+                <td>{{emprestimo.usuario.nome}}</td>
+            </tr>
+            <tr>
+                <th scope="row">CPF:</th> 
+                <td>{{emprestimo.usuario.cpf}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Cargo:</th> 
+                <td>{{emprestimo.usuario.cargo}}</td>
+            </tr>
 
         <h3>Dados do Emprestimo</h3>
-        <tr>
-            <th scope="row">Aquisição:</th> 
-            <td>{{emprestimo.aquisicao}}</td>
-        </tr>
-        <tr>
-            <th scope="row">Data de Devolução:</th> 
-            <td>{{emprestimo.prazoEmprestimo.prazo}}</td>
-        </tr>
-        <tr>
-            <th scope="row">Aquisição:</th> 
-            <td>{{emprestimo.aquisicao}}</td>
-        </tr>
+            <tr>
+                <th scope="row">Aquisição:</th> 
+                <td>{{emprestimo.aquisicao | date:'dd/MM/yy, h:mm a'}}</td>
+            </tr>
+            
+            <tr>
+                <th scope="row">Prazo Emprestimo:</th> 
+                <td>{{emprestimo.prazoEmprestimo.prazo }} dias</td>
+            </tr>
+       </div>
     </tbody>
 </div>
 </table>
 
+<div  class=" cadastrar">
+    <button [disabled]=" emprestimo==null" (click)="onSubmitEmprestimo()" 
+    type="submit" class="btn btn-primary ">Devolver Emprestimo</button>
+</div>
