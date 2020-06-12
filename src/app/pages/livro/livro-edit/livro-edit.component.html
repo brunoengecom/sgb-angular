@@ -1,5 +1,12 @@
 <app-navegacao></app-navegacao>
 
+<div *ngIf="alertSuccess" class="alert alert-success" role="alert">
+  Edição efetuada com sucesso!!
+</div>
+<div *ngIf="alertDanger" class="alert alert-danger" role="alert">
+  Falha ao fazer Edição!
+</div>
+
 <table class="table table-striped">
   <div class="container" [formGroup]="profileForm">
       <h1>Edição de Livro</h1>

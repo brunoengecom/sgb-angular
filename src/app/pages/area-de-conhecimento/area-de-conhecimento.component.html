@@ -28,7 +28,7 @@
             <td><a routerLink="/livro/{{areaDeConhecimento.id}}/area-de-conhecimento" class="btn btn-info " 
                 data-ng-repeat="user in User.users | orderBy:'name'false | filter:search">Listar Livros</a></td>     
             
-                <td><a routerLink="/areaDeConhecimento/{{areaDeConhecimento.id}}" class="btn btn-warning ">Editar</a></td>      
-          </tr>
+                <td><a routerLink="/area-de-conhecimento/edit/{{areaDeConhecimento.id}}" class="btn btn-warning ">Editar</a></td>      
+        </tr>
     </tbody>
 </table>

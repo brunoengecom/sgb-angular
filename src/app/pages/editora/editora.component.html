@@ -21,8 +21,9 @@
         <tr *ngFor="let editora of editoras">
             <th scope="row">{{editora.nome}}</th>    
             <td scope="row">{{editora.cnpj}}</td>    
-            <td><a class="btn btn-info ">Listar Livros</a></td>      
-            <td><a routerLink="/editora/{{editora.id}}" class="btn btn-warning ">Editar</a></td>
+            <td><a routerLink="/livro/{{editora.id}}/editora" class="btn btn-info " 
+              data-ng-repeat="user in User.users | orderBy:'name'false | filter:search">Listar Livros</a></td>       
+            <td><a routerLink="/editora/edit/{{editora.id}}" class="btn btn-warning ">Editar</a></td>
     
           </tr>
     </tbody>

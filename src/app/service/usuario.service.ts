@@ -12,15 +12,22 @@ import { AlunoDTO } from '../dto/aluno.dto';
   providedIn: 'root'
 })
 export class UsuarioService {
+  edit(usuario: Usuario) {
+    let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
+    let usuarioDto = new UsuarioDto(usuario);
+    console.log(JSON.stringify(usuarioDto));
+    
+    return this.http.put(this.url+"/"+usuario.id,JSON.stringify(usuarioDto),{
+      headers:httpHeaders,
+      observe:'response',
+    });
+  }
   url:string = RESOURCE + "/usuario";
   linesPerPage:string = "10";
   orderBy:string = "id";
   direction:string = "DESC";
 
-  getUsuario(id: number): Observable<Usuario> {
-    let valor = ''+id;
-     return this.http.get<Usuario>(this.url+"/"+valor, {responseType:"json"});  
-  }
+  
 
   getUsuarioMulta(cpf:String){
     return this.http.get(this.url+"/buscaMulta?cpf="+cpf, {responseType:"json"});
@@ -69,6 +76,11 @@ export class UsuarioService {
     console.log(getURL);
    return this.http.get(getURL,
    {responseType:"json"});
+  }
+
+  getUsuario(id: number): Observable<Usuario> {
+    let valor = ''+id;
+     return this.http.get<Usuario>(this.url+"/"+valor, {responseType:"json"});  
   }
 
 

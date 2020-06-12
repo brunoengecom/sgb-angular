@@ -35,6 +35,10 @@ import { EmprestimoSaveComponent } from './pages/emprestimo/emprestimo-save/empr
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { DevolucaoEmprestimoComponent } from './pages/emprestimo/devolucao-emprestimo/devolucao-emprestimo.component';
+import { ListLivrosEditoraComponent } from './pages/editora/list-livros-editora/list-livros-editora.component';
+import { EditoraEditComponent } from './pages/editora/editora-edit/editora-edit.component';
+import { AreaDeConhecimentoEditComponent } from './pages/area-de-conhecimento/area-de-conhecimento-edit/area-de-conhecimento-edit.component';
+import { UsuarioEditComponent } from './pages/usuario/usuario-edit/usuario-edit.component';
 
 
 
@@ -67,7 +71,11 @@ import { DevolucaoEmprestimoComponent } from './pages/emprestimo/devolucao-empre
     UsuarioSaveComponent,
     ListLivrosComponent,
     EmprestimoSaveComponent,
-    DevolucaoEmprestimoComponent,    
+    DevolucaoEmprestimoComponent,
+    ListLivrosEditoraComponent,
+    EditoraEditComponent,
+    AreaDeConhecimentoEditComponent,
+    UsuarioEditComponent,    
   ],
   imports: [
     NgxMaskModule.forRoot(),

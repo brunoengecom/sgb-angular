@@ -1,6 +1,8 @@
 <app-navegacao></app-navegacao>
 
 
+  
+
 <table class="table table-striped" >
     <thead>
       <th scope="row">Nome:</th>
@@ -24,7 +26,7 @@
     
   </table>
   <div class="container">
-    <span *ngIf="livros.length==0">Não existe livro cadastrado para esta área de Conhecimento!</span>
+    <span *ngIf="livros.length==0">Não existe livro cadastrado para esta Editora!</span>
   </div>
   
   <div class="container-fluid paginacao">
@@ -32,11 +34,11 @@
       <tbody>
         <tr>
           
-          <td><button [disabled]="page==0" routerLink="/list-livros/page/{{page-1}}" class="btn btn-outline-primary">Anterior</button></td>
+          <td><button [disabled]="page==0" routerLink="/list-livros-editora/page/{{page-1}}" class="btn btn-outline-primary">Anterior</button></td>
           <td><button class="btn btn-outline-primary">{{page+1}}</button></td>
-          <td><button [disabled]="page +1 >= totalPages" class="btn btn-outline-primary" routerLink="/list-livros/page/{{page+1}}">{{page+2}}</button></td>
-          <td><button [disabled]="page +2 >= totalPages" class="btn btn-outline-primary" routerLink="/list-livros/page/{{page+2}}">{{page+3}}</button></td>
-          <td><button [disabled]="page +1 >= totalPages" class="btn btn-outline-primary" routerLink="/list-livros/page/{{page+1}}">Próxima</button></td>
+          <td><button [disabled]="page +1 >= totalPages" class="btn btn-outline-primary" routerLink="/list-livros-editora/page/{{page+1}}">{{page+2}}</button></td>
+          <td><button [disabled]="page +2 >= totalPages" class="btn btn-outline-primary" routerLink="/list-livros-editora/page/{{page+2}}">{{page+3}}</button></td>
+          <td><button [disabled]="page +1 >= totalPages" class="btn btn-outline-primary" routerLink="/list-livros-editora/page/{{page+1}}">Próxima</button></td>
         </tr>
       </tbody>
     </table>

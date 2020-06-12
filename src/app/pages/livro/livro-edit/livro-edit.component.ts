@@ -10,6 +10,7 @@ import { EditoraService } from 'src/app/service/editora.service';
 import { AreaDeConhecimentoService } from 'src/app/service/area-de-conhecimento.service';
 import { AreaDeConhecimento } from 'src/app/model/Area-de-conhecimento';
 import { log } from 'util';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-livro-edit',
@@ -33,6 +34,8 @@ export class LivroEditComponent implements OnInit {
   areasDeConhecimento: Array<AreaDeConhecimento>=[];
   editedItem: Livro;
   messageAddAutor: String;
+  alertSuccess: Boolean;
+  alertDanger: Boolean;
 
   constructor(
     formBuilder: FormBuilder,
@@ -73,18 +76,17 @@ export class LivroEditComponent implements OnInit {
     this.livro.ano = this.profileForm.value.ano;
     this.livro.isbn = this.profileForm.value.isbn;
     this.livro.areaDeConhecimento.id = this.profileForm.value.areaDeConhecimento;
-    this.livro.editora.id = this.profileForm.value.editora;
-    console.log(this.profileForm.value.editora);
-    
+    this.livro.editora.id = this.profileForm.value.editora;    
     this.livro.autores = this.autores;
     this.livro.valor = this.profileForm.value.valor;
     
     this.alert = null;
-
+    window.location.reload();
     this.service.edit(this.livro).subscribe(data=>{
-      console.log(data);
+     
         this.alert = true; 
-        this.profileForm.controls.numero.setValue("");    
+        this.profileForm.controls.numero.setValue("");  
+        window.location.reload();  
     },
     error=>{
       this.handleError(error)
@@ -104,8 +106,9 @@ export class LivroEditComponent implements OnInit {
   }
 
 //handleError(error: any) {
-  handleError(error: any) {
-    throw new Error("Method not implemented.");
+  handleError(handleError: HttpErrorResponse){
+    this.alert=true;
+    return throwError(handleError.error.message);
   }
  // this.alert = false;
  // return throwError(this.handleError.error.message);

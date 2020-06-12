@@ -16,7 +16,6 @@ import { Turma } from 'src/app/model/turma';
 })
 export class UsuarioSaveComponent implements OnInit {
   profileForm: FormGroup;
-  //enumRoles: Observable<Array<string>>;
   enumRoles: Array<string>=[];
   usuario: Usuario;
   messages: Array<String>=[];
@@ -55,7 +54,7 @@ export class UsuarioSaveComponent implements OnInit {
       })
 
 
-    }else if(this.profileForm.value.tipoCadastro==="ALUNO"){
+    }else if(this.profileForm.value.tipoCadastro==="ALUNO"){  
       let matricula = new Matricula;
       let turma = new Turma;
 

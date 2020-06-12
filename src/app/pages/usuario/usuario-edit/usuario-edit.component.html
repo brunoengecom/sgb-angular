@@ -1,0 +1,63 @@
+<app-navegacao></app-navegacao>
+
+
+
+<table class="table table-striped">
+    <div class="container" [formGroup]="profileForm">
+    <h1>Cadastro de Usuário</h1>
+    <hr>
+    <div *ngIf="alertDanger" class="alert alert-danger" role="alert">
+        <div *ngFor=" let message of messages">
+            <p> {{message}}</p>
+        </div>
+       
+    </div>
+    <div *ngIf="alertSucess" class="alert alert-success" role="alert">
+        <div *ngFor=" let message of messages">
+            <p> {{message}}</p>
+        </div>
+       
+    </div>
+ 
+    <label for="fname">Nome:</label>
+    <input type="text" formControlName="nome" id="nome" name="nome" placeholder="Entre com o nome:">
+
+    <label for="fname">Email:</label>
+    <input type="text" formControlName="email" id="email" name="email" placeholder="Entre com o Email:">
+
+    <label for="fname">Data de Nascimento:</label>
+    <input id="dataNasc" type="date" id="fname" name="dtInicio" 
+    placeholder="dd/mm/aaaa" data-mask="00/00/0000" autocomplete="off"
+    class="form-control data-mask" formControlName="dataNasc">
+
+    <label for="lname">CPF:</label>
+    <input type="text" formControlName="cpf" id="cpf" mask="000.000.000-00" name="cpf" placeholder="Entre com o CPF">
+
+    <label for="fname">Tipo de Cadastro:</label>    
+    <select  id="tipoCadastro" type="text" id="fname" name="tipoCadastro" 
+    class="form-control" formControlName="tipoCadastro">  
+   
+        <option></option>
+        <option *ngFor="let enum of enumRoles">{{enum}}</option>
+        
+    </select>
+
+    <div *ngIf="profileForm.value.tipoCadastro=='ALUNO'">
+        <label for="fname">Código da Turma:</label>
+        <input type="text" formControlName="turma" id="turma" name="turma" placeholder="Insira o código da Turma:">
+
+        <label for="fname">Matrícula:</label>
+        <input type="text" formControlName="matricula" id="matricula" name="matricula" placeholder="Insira a Matrícula:">
+        
+    </div>
+
+    <div *ngIf="profileForm.value.tipoCadastro=='FUNCIONARIO'">
+        <label for="fname">Cargo:</label>
+        <input type="text" formControlName="cargo" id="cargo" name="cargo" placeholder="Insira o Cargo:">
+    </div>
+
+    <button routerLink="/livro" class="btn btn-danger" value="Cadastrar">Cancelar</button>
+    <button [disabled]="!profileForm.valid" (click)="onSubmit()" class="btn btn-primary " value="Cadastrar">Salvar</button>
+    
+</div>
+</table>

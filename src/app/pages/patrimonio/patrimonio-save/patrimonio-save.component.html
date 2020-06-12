@@ -1,37 +1,34 @@
 <app-navegacao></app-navegacao>
 
-<table class="table table-hover">
-  
-<h1>Cadastro de Patrimonio</h1>
-</table>  
+
 
 <table class="table table-striped">
+  <h1>Cadastro de Patrimonio</h1>
     <div class="container" [formGroup]="profileForm">
-      
-        <tr>
-            <td scope="col">ISBN: </td>
-            <td scope="col">{{livro.isbn}}</td>
+       
+          <tr>
+            <th scope="row">ISBN: </th>
+            <td >{{livro.isbn}}</td>
           </tr>
           <tr>
-            <td scope="col">Nome: </td>
-            <td scope="col">{{livro.nome}}</td>
+            <th scope="row">Nome: </th>
+            <td>{{livro.nome}}</td>
           </tr>
           <tr>
-            <td scope="col">Editora: </td>
-            <td scope="col">{{livro.editora.nome}}</td>
+            <th scope="row">Editora: </th>
+            <td>{{livro.editora.nome}}</td>
+            <td></td>
           </tr>
         
-        
-    
-    <hr>
-     <div class="container">
-        <div *ngIf="alert" class="alert alert-success" role="alert">
-          Patrimonio Salvo com Sucesso!
+     
+        <div class="container">
+            <div *ngIf="alert" class="alert alert-success" role="alert">
+              Patrimonio Salvo com Sucesso!
+            </div>
+            <div *ngIf="alert!=null && !alert" class="alert alert-danger" role="alert">
+              Erro ao Cadastrar Patrimonio!
+            </div>
         </div>
-        <div *ngIf="alert!=null && !alert" class="alert alert-danger" role="alert">
-          Erro ao Cadastrar Patrimonio!
-        </div>
-     </div>
     <label for="fname">Patrimonio:</label>
     <input id="campoData" type="text" id="fname" name="numero" 
     class="form-control" formControlName="numero" required >

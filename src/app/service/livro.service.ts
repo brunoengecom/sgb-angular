@@ -8,6 +8,7 @@ import { LivroDto } from '../dto/livro.dto';
   providedIn: 'root'
 })
 export class LivroService {
+  
   url:string = RESOURCE + "/livro";
   linesPerPage:string = "10";
   orderBy:string = "id";
@@ -17,12 +18,10 @@ export class LivroService {
     let httpHeaders = new HttpHeaders({'Content-Type':'application/json','Cache-Control':'no-cache'});
     let livroDto = new LivroDto(livro);
     console.log(JSON.stringify(livroDto));
+    
     return this.http.put(this.url+"/"+livro.id,JSON.stringify(livroDto),{
-      
-      
       headers:httpHeaders,
       observe:'response',
-      
     });
   }
 
@@ -56,6 +55,12 @@ export class LivroService {
     let valor = ''+id;
      return this.http.get(this.url+"/"+valor+"/areaDeConhecimento", {responseType:"json"});     
   } 
+
+    getLivrosByEditora(id: number){
+      let valor = ''+id;
+      return this.http.get(this.url+"/"+valor+"/editora", {responseType:"json"});
+    }
+  
 
   constructor(private http:HttpClient) { }
 }

@@ -25,11 +25,17 @@ import { UsuarioSaveComponent } from './pages/usuario/usuario-save/usuario-save.
 import { ListLivrosComponent } from './pages/area-de-conhecimento/list-livros/list-livros.component';
 import { EmprestimoSaveComponent } from './pages/emprestimo/emprestimo-save/emprestimo-save.component';
 import { DevolucaoEmprestimoComponent } from './pages/emprestimo/devolucao-emprestimo/devolucao-emprestimo.component';
+import { ListLivrosEditoraComponent } from './pages/editora/list-livros-editora/list-livros-editora.component';
+import { EditoraEditComponent } from './pages/editora/editora-edit/editora-edit.component';
+import { AreaDeConhecimentoEditComponent } from './pages/area-de-conhecimento/area-de-conhecimento-edit/area-de-conhecimento-edit.component';
 
 
 const routes:Routes=[
+  {path:'livro/:id/editora', component: ListLivrosEditoraComponent},  
+  {path:'editora/edit/:id', component: EditoraEditComponent},
   {path:'editora/save', component: EditoraSaveComponent},
   {path:'editora', component: EditoraComponent},  
+  {path:'area-de-conhecimento/edit/:id', component: AreaDeConhecimentoEditComponent},
   {path:'area-de-conhecimento', component: AreaDeConhecimentoComponent},
   {path: 'patrimonio/page/:id', component: PatrimonioComponent},
   {path: 'patrimonio/:id/save', component: PatrimonioSaveComponent},
@@ -45,6 +51,7 @@ const routes:Routes=[
   {path: 'devolucao-emprestimo', component: DevolucaoEmprestimoComponent},
   {path:'emprestimo/save',component: EmprestimoSaveComponent},
   {path:'emprestimo',component: EmprestimoComponent},
+
   {path:'livro/:id/area-de-conhecimento', component: ListLivrosComponent},
   {path:'livro/livro-cadastrar',component: LivroCadastrarComponent},
   {path:'livro/edit/:id', component: LivroEditComponent},

@@ -1,0 +1,28 @@
+<app-navegacao></app-navegacao>
+
+<div *ngIf="alertSuccess" class="alert alert-success" role="alert">
+  Edição efetuada com sucesso!!
+</div>
+<div *ngIf="alertDanger" class="alert alert-danger" role="alert">
+  Falha ao fazer Edição!
+</div>
+
+<table class="table table-striped">
+  <div class="container" [formGroup]="profileForm">
+      <h1>Edição de Editora</h1>
+      <hr>
+
+      
+      <label for="fname">Nome:</label>
+      <input formControlName="nome" type="text" class="form-control"  >
+
+      <label for="fname">CNPJ:</label>
+      <input formControlName="cnpj" type="text" class="lname" name="CNPJ" >
+  
+      
+      <button  (click)="onSubmit()" routerLink="/editora/edit/{{editora.id}}" class="btn btn-success mb-4" value="Cadastrar">Salvar</button>
+      <button routerLink="/editora" class="btn btn-danger mx-sm-3 mb-4" value="Cadastrar">Voltar</button>
+      
+       
+  </div>
+</table>
